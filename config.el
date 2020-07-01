@@ -40,7 +40,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type nil)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -73,9 +73,14 @@
 
 (add-hook! python-mode
   (conda-env-activate "tf2")
-  (spacemacs/set-leader-keys-for-major-mode 'python-mode "'" '+python/open-ipython-repl)
-  (spacemacs/set-leader-keys-for-major-mode 'python-mode "gg" 'lsp-find-definition)
+  (spacemacs/set-leader-keys-for-major-mode 'python-mode
+    "gg" 'lsp-find-definition
+    "'" '+python/open-ipython-repl
+    "sb" 'python-shell-send-buffer
+    "sr" 'python-shell-send-region
+    )
   )
+
 
 (add-hook! c++-mode
   (spacemacs/set-leader-keys-for-major-mode 'c++-mode "gg" 'lsp-find-definition)
@@ -99,6 +104,7 @@
 
 ;; (spacemacs/set-leader-keys "l" 'spacemacs/workspaces-transient-state/spacemacs/layouts-transient-state/body-and-exit)
 (spacemacs/set-leader-keys "o" 'spacemacs/workspaces-transient-state/body)
+
 (spacemacs/set-leader-keys "gs" 'magit-status)
 
 (spacemacs/set-leader-keys "0" '+treemacs/toggle)
