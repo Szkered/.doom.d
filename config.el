@@ -102,7 +102,6 @@
 
 (spacemacs/set-leader-keys "'" 'spacemacs/shell-pop-multi-vterm)
 
-;; (spacemacs/set-leader-keys "l" 'spacemacs/workspaces-transient-state/spacemacs/layouts-transient-state/body-and-exit)
 (spacemacs/set-leader-keys "o" 'spacemacs/workspaces-transient-state/body)
 
 (spacemacs/set-leader-keys "gs" 'magit-status)
