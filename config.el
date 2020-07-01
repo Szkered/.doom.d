@@ -65,7 +65,10 @@
   (set-lsp-priority! 'mspyls 1))
 
 (after! lsp-clients
-  (set-lsp-priority! 'clangd 1))
+  (set-lsp-priority! 'clangd 1)
+  (flycheck-disable-checker 'c/c++-clang)
+  (flycheck-disable-checker 'c/c++-gcc)
+  )
 
 
 ;; to make kdb closer to spacemace
@@ -114,6 +117,8 @@
 (spacemacs/set-leader-keys "5" 'winum-select-window-5)
 (spacemacs/set-leader-keys "8" 'winum-select-window-8)
 (spacemacs/set-leader-keys "9" 'winum-select-window-9)
+
+(spacemacs/set-leader-keys "es" 'flycheck-list-errors)
 
 (use-package! multi-vterm
   :config
