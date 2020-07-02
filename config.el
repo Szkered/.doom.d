@@ -33,8 +33,9 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-horizon)
-;; (setq doom-theme 'doom-laserwave)
+;; (setq doom-theme 'doom-solarized-light)
+;; (setq doom-theme 'doom-horizon)
+(setq doom-theme 'doom-laserwave)
 ;; (setq doom-theme 'zaiste)
 
 ;; some themes need to swap bg
@@ -93,8 +94,9 @@
 (setq ein:output-area-inlined-images t)
 
 (add-to-list 'auto-mode-alist '("\\.gin\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)[Dd]ockerfile" . dockerfile-mode))
 
-(add-hook! c++-mode
+((add-hook! c++-mode
   (spacemacs/set-leader-keys-for-major-mode 'c++-mode "gg" 'lsp-find-definition)
   )
 
@@ -107,8 +109,6 @@
   :nv "C-p" #'evil-mc-make-and-goto-prev-match
   )
  )
-
-(evil-define-key 'hybrid yas-minor-mode-map (kbd "C-<tab>") 'yas-expand)
 
 (evil-define-key 'evil treemacs-mode-map (kbd "s") 'treemacs-resort)
 
@@ -124,7 +124,7 @@
 
 (spacemacs/set-leader-keys "gs" 'magit-status)
 
-(spacemacs/set-leader-keys "0" '+treemacs/toggle)
+(spacemacs/set-leader-keys "0" 'treemacs-select-window)
 (spacemacs/set-leader-keys "1" 'winum-select-window-1)
 (spacemacs/set-leader-keys "2" 'winum-select-window-2)
 (spacemacs/set-leader-keys "3" 'winum-select-window-3)
@@ -137,12 +137,6 @@
 
 (spacemacs/set-leader-keys "ji" 'imenu)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(vterm-color-black ((t (:background "#839496")))))
  ;; make auto-complete visable
 (use-package! multi-vterm
   :config
