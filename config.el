@@ -21,17 +21,23 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+
 ;; (setq doom-font "Fira Mono for Powerline")
 
+(setq doom-font (font-spec :family "Iosevka Term SS04" :size 20 :weight 'medium))
+
 ;; (setq doom-variable-pitch-font (font-spec :family "Overpass" :size 20))
-(setq doom-variable-pitch-font (font-spec :family "Fira Sans Book" :size 16))
+;; (setq doom-variable-pitch-font (font-spec :family "Fira Sans Book" :size 16))
+(setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 16))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-horizon)
+;; (setq doom-theme 'doom-laserwave)
+;; (setq doom-theme 'zaiste)
 
-;; horizon theme need to swap bg
+;; some themes need to swap bg
 (after! solaire-mode (solaire-mode-swap-bg))
 
 ;; If you use `org' and don't want your org files in the default location below,
@@ -84,6 +90,9 @@
     )
   )
 
+(setq ein:output-area-inlined-images t)
+
+(add-to-list 'auto-mode-alist '("\\.gin\\'" . conf-mode))
 
 (add-hook! c++-mode
   (spacemacs/set-leader-keys-for-major-mode 'c++-mode "gg" 'lsp-find-definition)
@@ -99,9 +108,15 @@
   )
  )
 
+(evil-define-key 'hybrid yas-minor-mode-map (kbd "C-<tab>") 'yas-expand)
+
+(evil-define-key 'evil treemacs-mode-map (kbd "s") 'treemacs-resort)
+
 ;; search
 (define-key global-map (kbd "C-s") 'swiper)
 (define-key global-map (kbd "C-c s") 'counsel-rg)
+
+(spacemacs/set-leader-keys "Ts" 'load-theme)
 
 (spacemacs/set-leader-keys "'" 'spacemacs/shell-pop-multi-vterm)
 
@@ -120,6 +135,15 @@
 
 (spacemacs/set-leader-keys "es" 'flycheck-list-errors)
 
+(spacemacs/set-leader-keys "ji" 'imenu)
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(vterm-color-black ((t (:background "#839496")))))
+ ;; make auto-complete visable
 (use-package! multi-vterm
   :config
   (spacemacs/set-leader-keys "mc" 'multi-vterm)
@@ -136,11 +160,4 @@
    [default default default italic underline success warning error])
  '(custom-safe-themes
    '("25f1b2ace87d23d803b42267fafdc38b31472e444c2aaa9069aa2c06be8955b2" "0cb1b0ea66b145ad9b9e34c850ea8e842c4c4c83abe04e37455a1ef4cc5b8791" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "79278310dd6cacf2d2f491063c4ab8b129fee2a498e4c25912ddaa6c3c5b621e" "7b3d184d2955990e4df1162aeff6bfb4e1c3e822368f0359e15e2974235d9fa8" default))
- )
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
+ '(package-selected-packages '(csv-mode csv vterm shell-pop projectile)))

@@ -1,6 +1,6 @@
-[submodule "modules/spacemacs_module_for_doom"]
-	path = modules/spacemacs_module_for_doom
-	url = git@github.com:Szkered/spacemacs_module_for_doom.git
 [submodule "modules/spacemacs"]
 	path = modules/spacemacs
 	url = git@github.com:Szkered/spacemacs_module_for_doom.git
+[submodule "themes"]
+	path = themes
+	url = git@github.com:zaiste/zaiste-emacs-theme.git

@@ -65,3 +65,4 @@
 (package! lsp-python-ms)
 (package! shell-pop)
 (package! dired-toggle-sudo)
+(package! csv-mode)
