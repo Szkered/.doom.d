@@ -66,3 +66,10 @@
 (package! shell-pop)
 (package! dired-toggle-sudo)
 (package! csv-mode)
+(package! org-download)
+(package! org-bullets)
+(package! org-super-agenda)
+(package! org-pretty-table-mode
+  :recipe (:host github :repo "Fuco1/org-pretty-table"))
+(package! systemd)
+(package! info-colors)
