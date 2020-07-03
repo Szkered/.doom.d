@@ -34,8 +34,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-solarized-light)
-;; (setq doom-theme 'doom-horizon)
-(setq doom-theme 'doom-laserwave)
+(setq doom-theme 'doom-horizon)
+;; (setq doom-theme 'doom-laserwave)
 ;; (setq doom-theme 'zaiste)
 
 ;; some themes need to swap bg
@@ -81,36 +81,74 @@
 ;; to make kdb closer to spacemace
 (load! "~/.doom.d/modules/spacemacs/+spacemacs")
 
+;; python stuff
+
+;; autoflake
+(defcustom python-autoflake-path (executable-find "autoflake")
+  "autoflake executable path."
+  :group 'python
+  :type 'string)
+
+(defun python-autoflake ()
+  "Automatically clean up python codes
+$ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --remove-duplicate-keys --expand-star-imports <filename>"
+  (interactive)
+  (when (eq major-mode 'python-mode)
+    (shell-command
+     (format
+      "%s --in-place --remove-unused-variables --remove-all-unused-imports --remove-duplicate-keys --expand-star-imports %s"
+      python-autoflake-path
+      (shell-quote-argument (buffer-file-name))))
+    (revert-buffer t t t)))
+
+
+(defun python-toggle-breakpoint ()
+  "Add an ipdb break point, highlight it."
+  (interactive)
+  (let ((trace (cond (t "import ipdb; ipdb.set_trace()")))
+        (line (thing-at-point 'line)))
+    (if (and line (string-match trace line))
+        (kill-whole-line)
+      (progn
+        (back-to-indentation)
+        (insert trace)
+        (insert "\n")
+        (python-indent-line)))))
+
 (add-hook! python-mode
   (conda-env-activate "tf2")
   (spacemacs/set-leader-keys-for-major-mode 'python-mode
-    "gg" 'lsp-find-definition
     "'" '+python/open-ipython-repl
     "sb" 'python-shell-send-buffer
     "sr" 'python-shell-send-region
+    "db" 'python-toggle-breakpoint
+    "ri" 'py-isort-buffer
+    "ru" 'python-autoflake
     )
   )
+
 
 (setq ein:output-area-inlined-images t)
 
 (add-to-list 'auto-mode-alist '("\\.gin\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)[Dd]ockerfile" . dockerfile-mode))
 
-((add-hook! c++-mode
-  (spacemacs/set-leader-keys-for-major-mode 'c++-mode "gg" 'lsp-find-definition)
+
+(after! treemacs
+  (setq treemacs-sorting 'mod-time-desc)
   )
 
 (map!
  :v "s" #'evil-surround-region
  :o "S" #'evil-surround-edit
+ :n  "]e"    #'move-text-line-down
+ :n  "[e"    #'move-text-line-up
 
  (:when (featurep! :editor multiple-cursors)
   :nv "C-n" #'evil-mc-make-and-goto-next-match
   :nv "C-p" #'evil-mc-make-and-goto-prev-match
   )
  )
-
-(evil-define-key 'evil treemacs-mode-map (kbd "s") 'treemacs-resort)
 
 ;; search
 (define-key global-map (kbd "C-s") 'swiper)
@@ -125,6 +163,7 @@
 (spacemacs/set-leader-keys "gs" 'magit-status)
 
 (spacemacs/set-leader-keys "0" 'treemacs-select-window)
+
 (spacemacs/set-leader-keys "1" 'winum-select-window-1)
 (spacemacs/set-leader-keys "2" 'winum-select-window-2)
 (spacemacs/set-leader-keys "3" 'winum-select-window-3)
@@ -133,11 +172,15 @@
 (spacemacs/set-leader-keys "8" 'winum-select-window-8)
 (spacemacs/set-leader-keys "9" 'winum-select-window-9)
 
+(spacemacs/set-leader-keys "d" 'evil-goto-definition)
+
 (spacemacs/set-leader-keys "es" 'flycheck-list-errors)
 
 (spacemacs/set-leader-keys "ji" 'imenu)
 
- ;; make auto-complete visable
+(spacemacs/set-leader-keys "fb" 'bookmark-jump)
+
+(custom-set-faces '(vterm-color-black ((t (:background "#839496"))))) ;; make auto-complete visable
 (use-package! multi-vterm
   :config
   (spacemacs/set-leader-keys "mc" 'multi-vterm)
