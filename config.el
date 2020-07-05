@@ -41,6 +41,7 @@
 (when EMACS28+
   (add-hook 'latex-mode-hook #'TeX-latex-mode))
 
+(setq doom-localleader-key ",")
 
 (load! "+org")
 (load! "+python")

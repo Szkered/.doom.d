@@ -203,4 +203,3 @@
        (default +bindings +smartparens))
 
 
-(setq doom-localleader-key ",")
