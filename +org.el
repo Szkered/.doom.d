@@ -2,9 +2,7 @@
 
 (setq org-directory "~/Dropbox/org/")
 
-;; looks
-(add-hook 'org-mode-hook 'org-bullets-mode)
-(setq org-bullets-bullet-list '("⁖"))
+(setq org-superstar-headline-bullets-list '("⁖"))
 (setq org-ellipsis " ... ")
 
 ;; deps
@@ -34,8 +32,15 @@
   )
 
 (setq all-org-files
-      (mapcar (lambda (x) (concat "~/Dropbox/org/" x))
-              (seq-filter 'filter-org-file (directory-files "~/Dropbox/org/"))))
+      (seq-filter 'filter-org-file (directory-files-recursively "~/Dropbox/org/" ".*")))
+
+;; refile
+(setq org-refile-targets
+      '((nil :maxlevel . 3)
+        (org-agenda-files :maxlevel . 3)
+        (all-org-files :maxlevel . 3)))
+;; (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
+;; (setq org-refile-use-outline-path t)                  ; Show full paths for refiling
 
 (defun air-org-skip-subtree-if-habit ()
   "Skip an agenda entry if it has a STYLE property equal to \"habit\"."

@@ -32,10 +32,11 @@
 (add-hook 'Info-mode-hook #'mixed-pitch-mode)
 
 (setq TeX-engine 'xetex)
+(when EMACS28+
+  (add-hook 'latex-mode-hook #'TeX-latex-mode))
 
 
 (load! "+org")
 (load! "+python")
 (load! "+cpp")
-(load! "+functions")
 (load! "+bindings")
