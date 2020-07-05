@@ -1,6 +1,6 @@
 ;;; ~/.doom.d/+org.el -*- lexical-binding: t; -*-
 
-(setq org-directory "~/Dropbox/org/")
+(setq org-directory "~/Dropbox/notes/")
 
 (setq org-superstar-headline-bullets-list '("⁖"))
 (setq org-ellipsis " ... ")
@@ -26,13 +26,13 @@
 (setq org-lowest-priority ?D)
 (setq org-highest-priority ?A)
 
-;; agenda / clock
+;; org file location
 (defun filter-org-file (file)
   (equal (car (last (split-string file "\\."))) "org")
   )
 
 (setq all-org-files
-      (seq-filter 'filter-org-file (directory-files-recursively "~/Dropbox/org/" ".*")))
+      (seq-filter 'filter-org-file (directory-files-recursively "~/Dropbox/notes/" ".*")))
 
 ;; refile
 (setq org-refile-targets
@@ -42,6 +42,7 @@
 ;; (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
 ;; (setq org-refile-use-outline-path t)                  ; Show full paths for refiling
 
+;; agenda / clock
 (defun air-org-skip-subtree-if-habit ()
   "Skip an agenda entry if it has a STYLE property equal to \"habit\"."
   (let ((subtree-end (save-excursion (org-end-of-subtree t))))
@@ -116,3 +117,21 @@
          )
         )
       )
+
+;; capture template
+(defun org-journal-find-location ()
+  (org-journal-new-entry t)
+  (goto-char (point-min)))
+
+;; (setq org-journal-file-type 'daily)
+
+;; (setq org-capture-templates '(("j" "Journal entry" entry (function org-journal-find-location)
+;;                                "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
+
+;; deft
+(use-package deft
+  :config
+  (setq deft-extensions '("txt" "tex" "org"))
+  (setq deft-directory "~/Dropbox/notes")
+  (setq deft-recursive t)
+  )

@@ -24,6 +24,12 @@
 
 ;; make flyspell faster
 (after! flyspell (require 'flyspell-lazy) (flyspell-lazy-mode 1))
+(setq ispell-dictionary "en-custom")
+(setq ispell-local-dictionary "en-custom")
+(setq flyspell-default-dictionary "en-custom")
+(setq default-buffer-file-coding-system 'no-conversion)
+
+(ispell-change-dictionary "en-custom")
 
 ;; info mode colors
 (use-package! info-colors
