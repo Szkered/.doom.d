@@ -57,7 +57,7 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
   (set-lsp-priority! 'mspyls 1))
 
 (add-hook! python-mode
-  (conda-env-activate "tf2")
+  (conda-env-activate "py38")
   (spacemacs/set-leader-keys-for-major-mode 'python-mode
     "'" '+python/open-ipython-repl
     "sb" 'python-shell-send-buffer
