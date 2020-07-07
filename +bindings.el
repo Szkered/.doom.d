@@ -38,7 +38,7 @@
 
   ;; jumps
   :n "ji" 'imenu
-  :n "d" 'evil-goto-definition
+  :n "." 'evil-goto-definition
   :n "fb" 'bookmark-jump
   :n "bb" 'switch-to-buffer
   )

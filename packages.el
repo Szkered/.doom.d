@@ -71,3 +71,4 @@
 (package! info-colors)
 (use-package! evil-tex
   :hook (LaTeX-mode . evil-tex-mode))
+(package! powerthesaurus)

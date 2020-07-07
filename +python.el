@@ -32,25 +32,25 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
         (insert "\n")
         (python-indent-line)))))
 
-(defun spacemacs/python-start-or-switch-repl ()
-  "Start and/or switch to the REPL."
-  (interactive)
-  (let ((shell-process
-         (or (python-shell-get-process)
-             ;; `run-python' has different return values and different
-             ;; errors in different emacs versions. In 24.4, it throws an
-             ;; error when the process didn't start, but in 25.1 it
-             ;; doesn't throw an error, so we demote errors here and
-             ;; check the process later
-             (with-demoted-errors "Error: %S"
-               ;; in Emacs 24.5 and 24.4, `run-python' doesn't return the
-               ;; shell process
-               (call-interactively #'run-python)
-               (python-shell-get-process)))))
-    (unless shell-process
-      (error "Failed to start python shell properly"))
-    (pop-to-buffer (process-buffer shell-process))
-    (evil-insert-state)))
+;; (defun spacemacs/python-start-or-switch-repl ()
+;;   "Start and/or switch to the REPL."
+;;   (interactive)
+;;   (let ((shell-process
+;;          (or (python-shell-get-process)
+;;              ;; `run-python' has different return values and different
+;;              ;; errors in different emacs versions. In 24.4, it throws an
+;;              ;; error when the process didn't start, but in 25.1 it
+;;              ;; doesn't throw an error, so we demote errors here and
+;;              ;; check the process later
+;;              (with-demoted-errors "Error: %S"
+;;                ;; in Emacs 24.5 and 24.4, `run-python' doesn't return the
+;;                ;; shell process
+;;                (call-interactively #'run-python)
+;;                (python-shell-get-process)))))
+;;     (unless shell-process
+;;       (error "Failed to start python shell properly"))
+;;     (pop-to-buffer (process-buffer shell-process) )
+;;     (evil-insert-state)))
 
 
 (after! lsp-python-ms
@@ -69,5 +69,3 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
   )
 
 (setq ein:output-area-inlined-images t)
-
-;; (setq +python-ipython-repl-args '("--ipython-dir=/home/zekun/.ipython"))

@@ -43,6 +43,13 @@
 
 (setq doom-localleader-key ",")
 
+(setq avy-timeout-seconds 0.2)
+
+(setq cwm-frame-internal-border 200)
+(setq cwm-use-vertical-padding t)
+
+;; (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
+
 (load! "+org")
 (load! "+python")
 (load! "+cpp")
