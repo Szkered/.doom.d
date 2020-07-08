@@ -22,7 +22,7 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
 (defun python-toggle-breakpoint ()
   "Add an ipdb break point, highlight it."
   (interactive)
-  (let ((trace (cond (t "import ipdb; ipdb.set_trace()")))
+  (let ((trace (cond (t "breakpoint()")))
         (line (thing-at-point 'line)))
     (if (and line (string-match trace line))
         (kill-whole-line)

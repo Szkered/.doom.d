@@ -52,6 +52,15 @@
    )
   )
 
+ (:after dap-mode
+  (:map dap-mode-map
+   :leader
+   :n "dd" 'dap-debug
+   :n "de" 'dap-debug-edit-template
+   :n "d." 'dap-hydra
+   )
+  )
+
  ;; (:when (:featurep! :lang python)
  ;;  (:map python-mod-map
  ;;   :localleader
