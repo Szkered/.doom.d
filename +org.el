@@ -76,32 +76,45 @@
          (
           (tags "PRIORITY=\"A\""
                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "Doing it Now:")))
+                 (org-agenda-overriding-header "\n\n⚡ Doing it Now:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
           (tags "PRIORITY=\"B\""
                 ((org-agenda-skip-function '(or (org-agenda-skip-entry-if 'todo 'done)
                                                 (org-agenda-skip-entry-if 'todo '("RUNWAY" "HANGER"))))
-                 (org-agenda-overriding-header "Long Term:")))
+                 (org-agenda-overriding-header "⚡ Long Term:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
           (tags "PRIORITY=\"D\""
                 ((org-agenda-skip-function '(or (org-agenda-skip-entry-if 'todo 'done)
                                                 (org-agenda-skip-entry-if 'todo '("RUNWAY" "HANGER"))))
-                 (org-agenda-overriding-header "Learning:")))
+                 (org-agenda-overriding-header "⚡ Learning:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
           (tags "TODO=\"AIRBORNE\""
                 ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                 (air-org-skip-subtree-if-priority ?A)
                                                 (air-org-skip-subtree-if-priority ?B)
                                                 (air-org-skip-subtree-if-priority ?D)))
-                 (org-agenda-overriding-header "AIRBORNE projects:")))
-          (agenda "" ((org-agenda-ndays 1)))
+                 (org-agenda-overriding-header "⚡ AIRBORNE projects:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
+          (agenda "" (
+                      (org-agenda-start-day "+0d")
+                      (org-agenda-span 5)
+                      (org-agenda-overriding-header "⚡ Schedule:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
+                      (org-agenda-repeating-timestamp-show-all nil)
+                      (org-agenda-remove-tags t)
+                      (org-agenda-prefix-format   "  %-3i  %-15b %t%s")
+                      (org-agenda-todo-keyword-format " ☐ ")
+                      (org-agenda-current-time-string "⮜┈┈┈┈┈┈┈ now")
+                      (org-agenda-scheduled-leaders '("" ""))
+                      (org-agenda-time-grid (quote ((daily today remove-match)
+                                                    (0900 1200 1500 1800 2100)
+                                                    "      " "┈┈┈┈┈┈┈┈┈┈┈┈┈")))
+                      ))
           (tags "TODO=\"RUNWAY\""
                 ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                 (air-org-skip-subtree-if-priority ?A)))
-                 (org-agenda-overriding-header "Projects on the RUNWAY:")))
+                 (org-agenda-overriding-header "⚡ Projects on the RUNWAY:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
           (alltodo ""
                    ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                    (air-org-skip-subtree-if-priority ?A)
                                                    (org-agenda-skip-if nil '(scheduled deadline))
                                                    (org-agenda-skip-entry-if 'todo '("AIRBORNE" "RUNWAY"))))
-                    (org-agenda-overriding-header "Projects / Tasks in the HANGER:")))
+                    (org-agenda-overriding-header "⚡ Projects / Tasks in the HANGER:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
           )
          ((org-agenda-compact-blocks nil)
           (org-agenda-archives-mode t)
@@ -118,15 +131,22 @@
         )
       )
 
-;; capture template
-(defun org-journal-find-location ()
-  (org-journal-new-entry t)
-  (goto-char (point-min)))
 
-;; (setq org-journal-file-type 'daily)
+;; (add-hook 'org-agenda-finalize-hook #'writeroom-mode)
 
-;; (setq org-capture-templates '(("j" "Journal entry" entry (function org-journal-find-location)
-;;                                "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
+(add-hook 'org-agenda-finalize-hook #'set-window-clean)
+
+(defun set-window-clean ()
+  (interactive)
+  (setq mode-line-format nil)
+  (set-window-margins (frame-selected-window) 10 10)
+  )
+
+
+(setq org-journal-file-type 'daily)
+(setq org-journal-enable-agenda-integration t)
+(setq org-capture-templates '(("j" "Journal entry" entry (function org-journal-find-location)
+                               "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
 
 ;; deft
 (use-package deft
