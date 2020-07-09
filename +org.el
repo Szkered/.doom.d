@@ -76,20 +76,32 @@
          (
           (tags "PRIORITY=\"A\""
                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-prefix-format " %-2i %-15c")
+                 (org-agenda-todo-keyword-format "")
+                 (org-agenda-remove-tags t)
                  (org-agenda-overriding-header "\n\n⚡ Doing it Now:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
           (tags "PRIORITY=\"B\""
                 ((org-agenda-skip-function '(or (org-agenda-skip-entry-if 'todo 'done)
                                                 (org-agenda-skip-entry-if 'todo '("RUNWAY" "HANGER"))))
+                 (org-agenda-prefix-format " %-2i %-15c")
+                 (org-agenda-todo-keyword-format "")
+                 (org-agenda-remove-tags t)
                  (org-agenda-overriding-header "⚡ Long Term:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
           (tags "PRIORITY=\"D\""
                 ((org-agenda-skip-function '(or (org-agenda-skip-entry-if 'todo 'done)
                                                 (org-agenda-skip-entry-if 'todo '("RUNWAY" "HANGER"))))
+                 (org-agenda-prefix-format " %-2i %-15c")
+                 (org-agenda-todo-keyword-format "")
+                 (org-agenda-remove-tags t)
                  (org-agenda-overriding-header "⚡ Learning:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
           (tags "TODO=\"AIRBORNE\""
                 ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                 (air-org-skip-subtree-if-priority ?A)
                                                 (air-org-skip-subtree-if-priority ?B)
                                                 (air-org-skip-subtree-if-priority ?D)))
+                 (org-agenda-prefix-format " %-2i %-15c")
+                 (org-agenda-todo-keyword-format "")
+                 (org-agenda-remove-tags t)
                  (org-agenda-overriding-header "⚡ AIRBORNE projects:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
           (agenda "" (
                       (org-agenda-start-day "+0d")
@@ -97,7 +109,7 @@
                       (org-agenda-overriding-header "⚡ Schedule:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
                       (org-agenda-repeating-timestamp-show-all nil)
                       (org-agenda-remove-tags t)
-                      (org-agenda-prefix-format   "  %-3i  %-15b %t%s")
+                      (org-agenda-prefix-format   "  %-3i  %-15c %t%s")
                       (org-agenda-todo-keyword-format " ☐ ")
                       (org-agenda-current-time-string "⮜┈┈┈┈┈┈┈ now")
                       (org-agenda-scheduled-leaders '("" ""))
@@ -108,12 +120,18 @@
           (tags "TODO=\"RUNWAY\""
                 ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                 (air-org-skip-subtree-if-priority ?A)))
+                 (org-agenda-prefix-format " %-2i %-15c")
+                 (org-agenda-todo-keyword-format "")
+                 (org-agenda-remove-tags t)
                  (org-agenda-overriding-header "⚡ Projects on the RUNWAY:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
           (alltodo ""
                    ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                    (air-org-skip-subtree-if-priority ?A)
                                                    (org-agenda-skip-if nil '(scheduled deadline))
                                                    (org-agenda-skip-entry-if 'todo '("AIRBORNE" "RUNWAY"))))
+                    (org-agenda-prefix-format " %-2i %-15c")
+                    (org-agenda-todo-keyword-format "")
+                    (org-agenda-remove-tags t)
                     (org-agenda-overriding-header "⚡ Projects / Tasks in the HANGER:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
           )
          ((org-agenda-compact-blocks nil)
@@ -122,6 +140,23 @@
           ))
         ("w" "Weekly review"
          agenda ""
+         ;; (
+         ;;  ;; (org-agenda-start-day "+0d")
+         ;;  (org-agenda-start-with-log-mode t)
+         ;;  (org-agenda-archives-mode t)
+         ;;  (org-agenda-start-on-weekday 1)
+         ;;  (org-agenda-span 'week)
+         ;;  (org-agenda-overriding-header "⚡ Schedule:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
+         ;;  (org-agenda-repeating-timestamp-show-all nil)
+         ;;  (org-agenda-remove-tags t)
+         ;;  (org-agenda-prefix-format   "  %-3i  %-15b %t%s")
+         ;;  (org-agenda-todo-keyword-format " ☐ ")
+         ;;  (org-agenda-current-time-string "⮜┈┈┈┈┈┈┈ now")
+         ;;  (org-agenda-scheduled-leaders '("" ""))
+         ;;  (org-agenda-time-grid (quote ((daily today remove-match)
+         ;;                                (0900 1200 1500 1800 2100)
+         ;;                                "      " "┈┈┈┈┈┈┈┈┈┈┈┈┈")))
+         ;;  )
          ((org-agenda-span 'week)
           (org-agenda-start-on-weekday 1)
           (org-agenda-start-with-log-mode t)
@@ -130,6 +165,44 @@
          )
         )
       )
+
+(defun my-org-agenda-time-grid-spacing ()
+  "Set different line spacing w.r.t. time duration."
+  (save-excursion
+    (let ((colors
+           ;; (list "#F6B1C3" "#FFFF9D" "#BEEB9F" "#ADD5F7")
+           (list "IndianRed" "sienna3" "SeaGreen4" "DarkSlateGray4")
+           )
+          pos
+          duration)
+      (nconc colors colors)
+      (goto-char (point-min))
+      (while (setq pos (next-single-property-change (point) 'duration))
+        (goto-char pos)
+        (when (and (not (equal pos (point-at-eol)))
+                   (setq duration (org-get-at-bol 'duration)))
+          (let ((line-height (if (< duration 30) 1.0 (+ 0.5 (/ duration 60))))
+                (ov (make-overlay (point-at-bol) (1+ (point-at-eol)))))
+            (overlay-put ov 'face `(:background ,(car colors) :foreground "#FFFFFF"))
+            (setq colors (cdr colors))
+            (overlay-put ov 'line-height line-height)
+            (overlay-put ov 'line-spacing (1- line-height))))))))
+
+
+(setq org-agenda-category-icon-alist
+      `(("joural" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
+        ("neuri" ,(list (all-the-icons-faicon "black-tie")) nil nil :ascent center)
+        ("math" ,(list (all-the-icons-faicon "graduation-cap" :width 0.7)) nil nil :ascent center)
+        ("music" ,(list (all-the-icons-faicon "music")) nil nil :ascent center)
+        ("health" ,(list (all-the-icons-faicon "heartbeat")) nil nil :ascent center)
+        ("personal_fin" ,(list (all-the-icons-faicon "usd")) nil nil :ascent center)
+        ("quant_fin" ,(list (all-the-icons-faicon "line-chart")) nil nil :ascent center)
+        ("ml" ,(list (all-the-icons-faicon "cog")) nil nil :ascent center)
+        ("prog" ,(list (all-the-icons-faicon "terminal")) nil nil :ascent center)
+        ("meeting" ,(list (all-the-icons-faicon "commenting")) nil nil :ascent center)
+        ("crypto" ,(list (all-the-icons-faicon "lock")) nil nil :ascent center)
+        ("vocab" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
+        ))
 
 
 ;; (add-hook 'org-agenda-finalize-hook #'writeroom-mode)
@@ -140,6 +213,7 @@
   (interactive)
   (setq mode-line-format nil)
   (set-window-margins (frame-selected-window) 10 10)
+  (my-org-agenda-time-grid-spacing)
   )
 
 
