@@ -140,39 +140,38 @@
           ))
         ("w" "Weekly review"
          agenda ""
-         ;; (
-         ;;  ;; (org-agenda-start-day "+0d")
-         ;;  (org-agenda-start-with-log-mode t)
-         ;;  (org-agenda-archives-mode t)
-         ;;  (org-agenda-start-on-weekday 1)
-         ;;  (org-agenda-span 'week)
-         ;;  (org-agenda-overriding-header "⚡ Schedule:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
-         ;;  (org-agenda-repeating-timestamp-show-all nil)
-         ;;  (org-agenda-remove-tags t)
-         ;;  (org-agenda-prefix-format   "  %-3i  %-15b %t%s")
-         ;;  (org-agenda-todo-keyword-format " ☐ ")
-         ;;  (org-agenda-current-time-string "⮜┈┈┈┈┈┈┈ now")
-         ;;  (org-agenda-scheduled-leaders '("" ""))
-         ;;  (org-agenda-time-grid (quote ((daily today remove-match)
-         ;;                                (0900 1200 1500 1800 2100)
-         ;;                                "      " "┈┈┈┈┈┈┈┈┈┈┈┈┈")))
-         ;;  )
          ((org-agenda-span 'week)
           (org-agenda-start-on-weekday 1)
           (org-agenda-start-with-log-mode t)
           (org-agenda-archives-mode t)
+          (org-agenda-remove-tags t)
           )
          )
         )
       )
 
+
+(setq org-agenda-category-icon-alist
+      `(("joural" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
+        ("neuri" ,(list (all-the-icons-faicon "black-tie" :height 0.9)) nil nil :ascent center)
+        ("math" ,(list (all-the-icons-faicon "graduation-cap" :height 0.65)) nil nil :ascent center)
+        ("music" ,(list (all-the-icons-faicon "music")) nil nil :ascent center)
+        ("health" ,(list (all-the-icons-faicon "heartbeat" :height 0.85)) nil nil :ascent center)
+        ("personal_fin" ,(list (all-the-icons-faicon "usd")) nil nil :ascent center)
+        ("quant_fin" ,(list (all-the-icons-faicon "line-chart" :height 0.68)) nil nil :ascent center)
+        ("ml" ,(list (all-the-icons-faicon "cog")) nil nil :ascent center)
+        ("prog" ,(list (all-the-icons-faicon "terminal")) nil nil :ascent center)
+        ("meeting" ,(list (all-the-icons-faicon "commenting")) nil nil :ascent center)
+        ("crypto" ,(list (all-the-icons-faicon "lock")) nil nil :ascent center)
+        ("vocab" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
+        ("read" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
+        ))
+
+
 (defun my-org-agenda-time-grid-spacing ()
   "Set different line spacing w.r.t. time duration."
   (save-excursion
-    (let ((colors
-           ;; (list "#F6B1C3" "#FFFF9D" "#BEEB9F" "#ADD5F7")
-           (list "IndianRed" "sienna3" "SeaGreen4" "DarkSlateGray4")
-           )
+    (let ((colors (list "IndianRed" "SeaGreen4" "sienna3" "DarkSlateGray4"))
           pos
           duration)
       (nconc colors colors)
@@ -181,7 +180,7 @@
         (goto-char pos)
         (when (and (not (equal pos (point-at-eol)))
                    (setq duration (org-get-at-bol 'duration)))
-          (let ((line-height (if (< duration 20) 1.0 (+ 0.5 (/ duration 60))))
+          (let ((line-height (if (< duration 30) 1.0 (+ 0.5 (/ duration 60))))
                 (ov (make-overlay (point-at-bol) (1+ (point-at-eol)))))
             (overlay-put ov 'face `(:background ,(car colors) :foreground "#FFFFFF"))
             (setq colors (cdr colors))
@@ -189,33 +188,17 @@
             (overlay-put ov 'line-spacing (1- line-height))))))))
 
 
-(setq org-agenda-category-icon-alist
-      `(("joural" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
-        ("neuri" ,(list (all-the-icons-faicon "black-tie" :height 0.9)) nil nil :ascent center)
-        ("math" ,(list (all-the-icons-faicon "graduation-cap" :height 0.65)) nil nil :ascent center)
-        ("music" ,(list (all-the-icons-faicon "music")) nil nil :ascent center)
-        ("health" ,(list (all-the-icons-faicon "heartbeat")) nil nil :ascent center)
-        ("personal_fin" ,(list (all-the-icons-faicon "usd")) nil nil :ascent center)
-        ("quant_fin" ,(list (all-the-icons-faicon "line-chart" :height 0.68)) nil nil :ascent center)
-        ("ml" ,(list (all-the-icons-faicon "cog")) nil nil :ascent center)
-        ("prog" ,(list (all-the-icons-faicon "terminal")) nil nil :ascent center)
-        ("meeting" ,(list (all-the-icons-faicon "commenting")) nil nil :ascent center)
-        ("crypto" ,(list (all-the-icons-faicon "lock")) nil nil :ascent center)
-        ("vocab" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
-        ))
-
-
-;; (add-hook 'org-agenda-finalize-hook #'writeroom-mode)
-
 (add-hook 'org-agenda-finalize-hook #'set-window-clean)
 
 (defun set-window-clean ()
   (interactive)
   (setq mode-line-format nil)
-  (set-window-margins (frame-selected-window) 10 10)
+  (writeroom-mode)
+  (text-scale-decrease 2)
   (my-org-agenda-time-grid-spacing)
   )
 
+(setq org-agenda-sticky t)
 
 (setq org-journal-file-type 'daily)
 (setq org-journal-enable-agenda-integration t)

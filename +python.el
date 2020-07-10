@@ -69,3 +69,5 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
   )
 
 (setq ein:output-area-inlined-images t)
+(setq ein:use-auto-complete t)
+(setq ein:use-smartrep t)
