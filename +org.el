@@ -153,20 +153,29 @@
 
 (setq org-agenda-category-icon-alist
       `(("joural" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
-        ("neuri" ,(list (all-the-icons-faicon "black-tie" :height 0.9)) nil nil :ascent center)
-        ("math" ,(list (all-the-icons-faicon "graduation-cap" :height 0.65)) nil nil :ascent center)
+        ;; ("neuri" ,(list (all-the-icons-faicon "black-tie" :height 0.9)) nil nil :ascent center)
+        ("neuri" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
+        ;; ("math" ,(list (all-the-icons-faicon "graduation-cap" :height 0.65)) nil nil :ascent center)
+        ("math" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         ("music" ,(list (all-the-icons-faicon "music")) nil nil :ascent center)
-        ("health" ,(list (all-the-icons-faicon "heartbeat" :height 0.85)) nil nil :ascent center)
-        ("personal_fin" ,(list (all-the-icons-faicon "usd")) nil nil :ascent center)
+        ;; ("health" ,(list (all-the-icons-faicon "heartbeat" :height 0.85)) nil nil :ascent center)
+        ("health" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
+        ("my_fin" ,(list (all-the-icons-faicon "usd")) nil nil :ascent center)
         ("quant_fin" ,(list (all-the-icons-faicon "line-chart" :height 0.68)) nil nil :ascent center)
-        ("ml" ,(list (all-the-icons-faicon "cog")) nil nil :ascent center)
+        ;; ("ml" ,(list (all-the-icons-faicon "cog")) nil nil :ascent center)
+        ("ml" ,(list (all-the-icons-octicon "hubot")) nil nil :ascent center)
         ("prog" ,(list (all-the-icons-faicon "terminal")) nil nil :ascent center)
         ("meeting" ,(list (all-the-icons-faicon "commenting")) nil nil :ascent center)
         ("crypto" ,(list (all-the-icons-faicon "lock")) nil nil :ascent center)
         ("vocab" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
         ("read" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
+        ("cooking" ,(list (all-the-icons-faicon "fire")) nil nil :ascent center)
         ))
 
+;; TO DISPLAY ALL AVAILABLE ICONS
+;; (all-the-icons-insert-icons-for 'octicon 10)
+;; (all-the-icons-insert-icons-for 'alltheicon)
+;; (all-the-icons-insert-icons-for 'faicon 1 0.5)
 
 (defun my-org-agenda-time-grid-spacing ()
   "Set different line spacing w.r.t. time duration."
@@ -212,3 +221,12 @@
   (setq deft-directory "~/Dropbox/notes")
   (setq deft-recursive t)
   )
+
+
+;; babel
+(defun my-org-python ()
+  (if (eq major-mode 'python-mode)
+      (progn (anaconda-mode t)
+             (company-mode t)))
+  )
+(add-hook 'org-src-mode-hook 'my-org-python)

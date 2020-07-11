@@ -3,9 +3,9 @@
 
 (after! lsp-clients
   (set-lsp-priority! 'clangd 1)
+  (add-to-list 'flycheck-disabled-checkers 'c/c++-clang)
+  (add-to-list 'flycheck-disabled-checkers 'c/c++-gcc)
   )
 
-(add-hook! c++-mode
-  (flycheck-disable-checker 'c/c++-clang)
-  (flycheck-disable-checker 'c/c++-gcc)
-  )
+
+(add-hook! c++-mode-hook (lsp))

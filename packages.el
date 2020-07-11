@@ -73,3 +73,4 @@
   :hook (LaTeX-mode . evil-tex-mode))
 (package! powerthesaurus)
 (package! smartrep)
+(package! ob-browser)
