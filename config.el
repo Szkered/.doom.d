@@ -10,6 +10,8 @@
 (after! solaire-mode (solaire-mode-swap-bg)) ;; some themes need to swap bg
 (custom-set-faces! '(vterm-color-black :background "#839496")) ;; make auto-complete visable
 
+(setq vterm-max-scrollback 100000)
+
 (setq display-line-numbers-type nil)
 
 ;; to make kdb closer to spacemace
@@ -50,20 +52,18 @@
 
 ;; (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
 
+(defun my-open-calendar ()
+  (interactive)
+  (+workspace/new "Calendar" nil)
+  (cfw:open-calendar-buffer
+   :contents-sources
+   (list
+    (cfw:org-create-source "#09f7a0")  ; orgmode source
+    (cfw:ical-create-source "gcal" my-gcal "IndianRed")))) ; google calendar ICS
+
+
+(load! "secret")
 (load! "+org")
 (load! "+python")
 (load! "+cpp")
 (load! "+bindings")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(ob-browser vterm shell-pop projectile org-bullets csv-mode csv ayu-theme)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(vterm-color-black ((t (:background "#839496")))))
