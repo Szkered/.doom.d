@@ -4,8 +4,8 @@
       user-mail-address "zekun@neuri.ai")
 
 ;; themes
-(setq doom-font (font-spec :family "Iosevka Term SS04" :size 20 :weight 'medium))
-(setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 16))
+(setq doom-font (font-spec :family "Iosevka Term SS04" :size 22 :weight 'medium))
+(setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 18))
 (setq doom-theme 'doom-horizon)
 (after! solaire-mode (solaire-mode-swap-bg)) ;; some themes need to swap bg
 (custom-set-faces! '(vterm-color-black :background "#839496")) ;; make auto-complete visable

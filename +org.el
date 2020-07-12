@@ -109,8 +109,8 @@
                       (org-agenda-overriding-header "⚡ Schedule:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
                       (org-agenda-repeating-timestamp-show-all nil)
                       (org-agenda-remove-tags t)
-                      (org-agenda-prefix-format   "  %-3i  %-15:c %t%s")
-                      (org-agenda-todo-keyword-format " ☐ ")
+                      ;; (org-agenda-prefix-format   "  %-3i  %-15:c %t%s")
+                      ;; (org-agenda-todo-keyword-format " ☐ ")
                       (org-agenda-current-time-string "⮜┈┈┈┈┈┈┈ now")
                       (org-agenda-scheduled-leaders '("" ""))
                       (org-agenda-time-grid (quote ((daily today remove-match)
@@ -136,6 +136,8 @@
           )
          ((org-agenda-compact-blocks nil)
           (org-agenda-archives-mode t)
+          (org-agenda-start-with-log-mode t)
+          (org-agenda-start-with-clockreport-mode t)
           (org-agenda-start-on-weekday 1)
           ))
         ("w" "Weekly review"
@@ -143,6 +145,7 @@
          ((org-agenda-span 'week)
           (org-agenda-start-on-weekday 1)
           (org-agenda-start-with-log-mode t)
+          (org-agenda-start-with-clockreport-mode t)
           (org-agenda-archives-mode t)
           (org-agenda-remove-tags t)
           )
@@ -157,6 +160,7 @@
         ("neuri" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
         ;; ("math" ,(list (all-the-icons-faicon "graduation-cap" :height 0.65)) nil nil :ascent center)
         ("math" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
+        ("nus" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         ("music" ,(list (all-the-icons-faicon "music")) nil nil :ascent center)
         ;; ("health" ,(list (all-the-icons-faicon "heartbeat" :height 0.85)) nil nil :ascent center)
         ("health" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
@@ -199,7 +203,11 @@
 
 (add-hook 'org-agenda-finalize-hook #'set-window-clean)
 
+;; use percentage to calculate left/right margin instead of the default 80 char line width
+(setq writeroom-width 0.8)
+
 (defun set-window-clean ()
+  "clean buffer for org agenda"
   (interactive)
   (setq mode-line-format nil)
   (writeroom-mode)
@@ -207,9 +215,12 @@
   (my-org-agenda-time-grid-spacing)
   )
 
+;; persistent org agenda buffer
 (setq org-agenda-sticky t)
 
-(setq org-journal-file-type 'daily)
+
+;; org journal
+(setq org-journal-file-type 'monthly)
 (setq org-journal-enable-agenda-integration t)
 (setq org-capture-templates '(("j" "Journal entry" entry (function org-journal-find-location)
                                "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
