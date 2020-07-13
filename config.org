@@ -6,59 +6,108 @@
 ;; -*- lexical-binding: t -*-
 #+END_SRC
 
+* AuthInfo
 #+BEGIN_SRC emacs-lisp
 (setq user-full-name "Zekun Shi"
       user-mail-address "zekun@neuri.ai")
+#+END_SRC
 
-;; themes
-(setq doom-font (font-spec :family "Iosevka Term SS04" :size 22 :weight 'medium))
-(setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 18))
+* Themes
+Horizon themes need to swap background
+#+BEGIN_SRC emacs-lisp
 (setq doom-theme 'doom-horizon)
-(after! solaire-mode (solaire-mode-swap-bg)) ;; some themes need to swap bg
-(custom-set-faces! '(vterm-color-black :background "#839496")) ;; make auto-complete visable
+(after! solaire-mode (solaire-mode-swap-bg))
+#+END_SRC
 
-(setq vterm-max-scrollback 100000)
+* Fonts
+Nice condensed fonts.
+#+BEGIN_SRC emacs-lisp
+(setq doom-font (font-spec :family "Iosevka Term SS04" :size 22 :weight 'medium))
+;; (setq doom-variable-pitch-font (font-spec :family "Noto Sans ExtraCondensed" :size 18 :weight 'semibold))
+(setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 18))
+#+END_SRC
 
+No line number.
+#+BEGIN_SRC emacs-lisp
 (setq display-line-numbers-type nil)
+#+END_SRC
 
-;; to make kdb closer to spacemace
+Centered window mode
+#+BEGIN_SRC emacs-lisp
+;; (setq cwm-frame-internal-border 200)
+;; (setq cwm-use-vertical-padding t)
+#+END_SRC
+
+* Spacemacs module
+Add spacemacs-esque key-bindings.
+#+BEGIN_SRC emacs-lisp
+(setq doom-localleader-key ",")
 (load! "~/.doom.d/modules/spacemacs/+spacemacs")
+#+END_SRC
 
-;; modes
+* Other modules
+#+BEGIN_SRC emacs-lisp
+(load! "secret")
+(load! "+org")
+(load! "+python")
+(load! "+cpp")
+(load! "+bindings")
+#+END_SRC
+** TODO get them into this file
+
+* avy
+#+BEGIN_SRC emacs-lisp
+(setq avy-timeout-seconds 0.2)
+#+END_SRC
+
+* Extra file extension parsing
+#+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.gin\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)[Dd]ockerfile" . dockerfile-mode))
+#+END_SRC
 
-;; treemacs
+* vterm
+Make auto-complete visible
+#+BEGIN_SRC emacs-lisp
+(custom-set-faces! '(vterm-color-black :background "#839496"))
+#+END_SRC
+
+More scrollback
+#+BEGIN_SRC emacs-lisp
+(setq vterm-max-scrollback 100000)
+#+END_SRC
+* treemacs
+Change default sorting.
+#+BEGIN_SRC emacs-lisp
 (after! treemacs (setq treemacs-sorting 'mod-time-desc))
+#+END_SRC
 
-;; make flyspell faster
+* Spell checking
+Make flyspell faster:
+#+BEGIN_SRC emacs-lisp
 (after! flyspell (require 'flyspell-lazy) (flyspell-lazy-mode 1))
 (setq ispell-dictionary "en-custom")
 (setq ispell-local-dictionary "en-custom")
 (setq flyspell-default-dictionary "en-custom")
 (setq default-buffer-file-coding-system 'no-conversion)
 
-(ispell-change-dictionary "en-custom")
+#+END_SRC
 
-;; info mode colors
+Use a custom English dictionary.
+#+BEGIN_SRC emacs-lisp
+(ispell-change-dictionary "en-custom")
+#+END_SRC
+
+* Extra color for Emacs's info-mode
+#+BEGIN_SRC emacs-lisp
 (use-package! info-colors
   :commands (info-colors-fontify-node))
 (add-hook 'Info-selection-hook 'info-colors-fontify-node)
 (add-hook 'Info-mode-hook #'mixed-pitch-mode)
+#+END_SRC
 
-(setq TeX-engine 'xetex)
-(when EMACS28+
-  (add-hook 'latex-mode-hook #'TeX-latex-mode))
-
-(setq doom-localleader-key ",")
-
-(setq avy-timeout-seconds 0.2)
-
-(setq cwm-frame-internal-border 200)
-(setq cwm-use-vertical-padding t)
-
-;; (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
-
+* Calendar
+#+BEGIN_SRC emacs-lisp
 (defun my-open-calendar ()
   (interactive)
   (+workspace/new "Calendar" nil)
@@ -67,11 +116,26 @@
    (list
     (cfw:org-create-source "#09f7a0")  ; orgmode source
     (cfw:ical-create-source "gcal" my-gcal "IndianRed")))) ; google calendar ICS
+#+END_SRC
 
+* LaTeX
+#+BEGIN_SRC emacs-lisp
+(setq TeX-engine 'xetex)
+(when EMACS28+
+  (add-hook 'latex-mode-hook #'TeX-latex-mode))
+#+END_SRC
 
-(load! "secret")
-(load! "+org")
-(load! "+python")
-(load! "+cpp")
-(load! "+bindings")
+* WebKit
+#+BEGIN_SRC emacs-lisp
+;; (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
+#+END_SRC
+
+* tldr
+tldr is an awesome cmd tool reference: [[https://github.com/tldr-pages/tldr][github]]
+
+#+BEGIN_SRC emacs-lisp
+(use-package! tldr
+  :commands (tldr)
+  :config
+  (setq tldr-directory-path (concat doom-etc-dir "tldr/")))
 #+END_SRC

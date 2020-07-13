@@ -74,3 +74,4 @@
 (package! powerthesaurus)
 (package! smartrep)
 (package! ob-browser)
+(package! tldr)
