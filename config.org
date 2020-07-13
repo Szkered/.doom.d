@@ -1,5 +1,12 @@
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+#+TITLE: Configuration
+#+AUTHOR: Zekun Shi
+#+PROPERTY: header-args :emacs-lisp :tangle yes :comments link
+#+STARTUP: org-startup-folded: showall
+#+BEGIN_SRC emacs-lisp
+;; -*- lexical-binding: t -*-
+#+END_SRC
 
+#+BEGIN_SRC emacs-lisp
 (setq user-full-name "Zekun Shi"
       user-mail-address "zekun@neuri.ai")
 
@@ -67,3 +74,4 @@
 (load! "+python")
 (load! "+cpp")
 (load! "+bindings")
+#+END_SRC
