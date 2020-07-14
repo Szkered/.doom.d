@@ -111,7 +111,7 @@
                       (org-agenda-start-day "+0d")
                       (org-agenda-span 5)
                       (org-agenda-overriding-header "⚡ Schedule:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
-                      (org-agenda-repeating-timestamp-show-all nil)
+                      ;; (org-agenda-repeating-timestamp-show-all nil)
                       (org-agenda-remove-tags t)
                       ;; (org-agenda-prefix-format   "  %-3i  %-15:c %t%s")
                       ;; (org-agenda-todo-keyword-format " ☐ ")
@@ -142,6 +142,7 @@
           )
          ((org-agenda-compact-blocks nil)
           (org-agenda-archives-mode t)
+          ;; (org-agenda-start-with-log-mode '(closed))
           (org-agenda-start-with-log-mode t)
           (org-agenda-start-with-clockreport-mode t)
           (org-agenda-start-on-weekday 1)
@@ -166,6 +167,7 @@
         ("neuri" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
         ;; ("math" ,(list (all-the-icons-faicon "graduation-cap" :height 0.65)) nil nil :ascent center)
         ("math" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
+        ("quantum" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         ("nus" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         ("music" ,(list (all-the-icons-faicon "music")) nil nil :ascent center)
         ;; ("health" ,(list (all-the-icons-faicon "heartbeat" :height 0.85)) nil nil :ascent center)
@@ -206,6 +208,7 @@
             (overlay-put ov 'line-height line-height)
             (overlay-put ov 'line-spacing (1- line-height))))))))
 
+;; (let ((colors (list "IndianRed" "SeaGreen4" "sienna3" "DarkSlateGray4"))) (nth 2 colors))
 
 (add-hook 'org-agenda-finalize-hook #'set-window-clean)
 
@@ -239,6 +242,29 @@
   (setq deft-recursive t)
   )
 
+;; Automatically add an appointment when clocking in a task
+(defvar bzg-org-clock-in-appt-delay 100
+  "Number of minutes for setting an appointment by clocking-in")
+
+(defun bzg-org-clock-in-add-appt (&optional n)
+  "Add an appointment for the Org entry at point in N minutes."
+  (interactive)
+  (save-excursion
+    (org-back-to-heading t)
+    (looking-at org-complex-heading-regexp)
+    (let* ((msg (match-string-no-properties 4))
+           (ct-time (decode-time))
+           (appt-min (+ (cadr ct-time)
+                        (or n bzg-org-clock-in-appt-delay)))
+           (appt-time ; define the time for the appointment
+            (progn (setf (cadr ct-time) appt-min) ct-time)))
+      (appt-add (format-time-string
+                 "%H:%M" (apply 'encode-time appt-time)) msg)
+      (if (interactive-p) (message "New appointment for %s" msg)))))
+
+;; (defadvice org-clock-in (after org-clock-in-add-appt activate)
+;;   "Add an appointment when clocking a task in."
+;;   (bzg-org-clock-in-add-appt))
 
 ;; babel
 (defun my-org-python ()
