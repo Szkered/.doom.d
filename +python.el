@@ -68,6 +68,10 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
     )
   )
 
+;; (add-hook 'inferior-python-mode-hook #'+workspaces-add-current-buffer-h)
+
+(add-hook! inferior-python-mode-hook (persp-add-buffer))
+
 (setq ein:output-area-inlined-images t)
 (setq ein:use-auto-complete t)
 (setq ein:use-smartrep t)

@@ -19,7 +19,7 @@
   )
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "HANGER(h)" "RUNWAY(r)" "AIRBORNE(a)" "|" "DONE(d)" "FAIL(f)" "CANCELLED(c)")))
+      '((sequence "TODO(t)" "HANGER(h)" "RUNWAY(r)" "AIRBORNE(a)" "|" "DONE(d)" "FAIL(f)" "CANCELLED(c)" "DELEGATED(g)")))
 
 ;; priorities
 (setq org-default-priority ?C)
@@ -81,6 +81,16 @@
                  (org-agenda-remove-tags t)
                  (org-agenda-overriding-header "\n\n⚡ Doing it Now:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
                  ))
+          (tags "TODO=\"AIRBORNE\""
+                ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
+                                                (air-org-skip-subtree-if-priority ?A)
+                                                (air-org-skip-subtree-if-priority ?B)
+                                                (air-org-skip-subtree-if-priority ?D)))
+                 (org-agenda-prefix-format " %-2i %-15:c")
+                 (org-agenda-todo-keyword-format "")
+                 (org-agenda-remove-tags t)
+                 (org-agenda-overriding-header "⚡ AIRBORNE projects:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
+                 ))
           (tags "PRIORITY=\"B\""
                 ((org-agenda-skip-function '(or (org-agenda-skip-entry-if 'todo 'done)
                                                 (org-agenda-skip-entry-if 'todo '("RUNWAY" "HANGER"))))
@@ -96,16 +106,6 @@
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-remove-tags t)
                  (org-agenda-overriding-header "⚡ Long Term:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
-                 ))
-          (tags "TODO=\"AIRBORNE\""
-                ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
-                                                (air-org-skip-subtree-if-priority ?A)
-                                                (air-org-skip-subtree-if-priority ?B)
-                                                (air-org-skip-subtree-if-priority ?D)))
-                 (org-agenda-prefix-format " %-2i %-15:c")
-                 (org-agenda-todo-keyword-format "")
-                 (org-agenda-remove-tags t)
-                 (org-agenda-overriding-header "⚡ AIRBORNE projects:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
                  ))
           (agenda "" (
                       (org-agenda-start-day "+0d")
@@ -170,7 +170,6 @@
         ("quantum" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         ("nus" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         ("music" ,(list (all-the-icons-faicon "music")) nil nil :ascent center)
-        ;; ("health" ,(list (all-the-icons-faicon "heartbeat" :height 0.85)) nil nil :ascent center)
         ("health" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
         ("my_fin" ,(list (all-the-icons-faicon "usd")) nil nil :ascent center)
         ("quant_fin" ,(list (all-the-icons-faicon "line-chart" :height 0.68)) nil nil :ascent center)
