@@ -68,6 +68,11 @@ Add spacemacs-esque key-bindings.
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)[Dd]ockerfile" . dockerfile-mode))
 #+END_SRC
 
+* Julia
+#+BEGIN_SRC emacs-lisp
+(require 'lsp-julia)
+#+END_SRC
+
 * vterm
 Make auto-complete visible
 #+BEGIN_SRC emacs-lisp
