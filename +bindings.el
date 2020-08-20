@@ -61,6 +61,13 @@
    )
   )
 
+ (:after julia-mode
+  (:map julia-mode-map
+   :localleader
+   :n "'" '+julia/open-repl
+   )
+  )
+
  ;; (:when (:featurep! :lang python)
  ;;  (:map python-mod-map
  ;;   :localleader

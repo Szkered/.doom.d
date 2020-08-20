@@ -11,13 +11,27 @@
 (setq user-full-name "Zekun Shi"
       user-mail-address "zekun@neuri.ai")
 #+END_SRC
+* Git
+#+BEGIN_SRC emacs-lisp
+(defcustom magit-gitk-executable
+  (or (and (eq system-type 'windows-nt)
+           (let ((exe (magit-git-string
+                       "-c" "alias.X=!x() { which \"$1\" | cygpath -mf -; }; x"
+                       "X" "gitk.exe")))
+             (and exe (file-executable-p exe) exe)))
+      (executable-find "gitk") "gitk")
+  "The Gitk executable."
+  :group 'magit-extras
+  :set-after '(magit-git-executable)
+  :type 'string)
+#+END_SRC
 
 * Themes
 Horizon themes need to swap background
 #+BEGIN_SRC emacs-lisp
-;; (setq doom-theme 'doom-solarized-light)
-(setq doom-theme 'doom-horizon)
-(after! solaire-mode (solaire-mode-swap-bg))
+(setq doom-theme 'doom-solarized-light)
+;; (setq doom-theme 'doom-horizon)
+;; (after! solaire-mode (solaire-mode-swap-bg))
 #+END_SRC
 
 * Fonts
@@ -71,6 +85,10 @@ Add spacemacs-esque key-bindings.
 * Julia
 #+BEGIN_SRC emacs-lisp
 (require 'lsp-julia)
+;; (add-hook 'julia-mode-hook
+;;   '(progn
+;;     (eglot-jl-init)
+;;     (eglot)))
 #+END_SRC
 
 * vterm
