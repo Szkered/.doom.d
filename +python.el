@@ -6,6 +6,7 @@
   :type 'string)
 
 
+
 (defun python-autoflake ()
   "Automatically clean up python codes
 $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --remove-duplicate-keys --expand-star-imports <filename>"
@@ -64,13 +65,13 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
     "sr" 'python-shell-send-region
     "db" 'python-toggle-breakpoint
     "ri" 'py-isort-buffer
-    "ru" 'python-autoflake
-    )
-  )
+    "ru" 'python-autoflake))
 
-(add-hook 'inferior-python-mode-hook #'+workspaces-add-current-buffer-h)
+  
 
-;; (add-hook! inferior-python-mode-hook (persp-add-buffer))
+;; (add-hook 'inferior-python-mode-hook #'+workspaces-add-current-buffer-h)
+
+(add-hook! inferior-python-mode-hook (persp-add-buffer))
 
 (setq ein:output-area-inlined-images t)
 (setq ein:use-auto-complete t)

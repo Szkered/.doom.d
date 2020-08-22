@@ -11,27 +11,13 @@
 (setq user-full-name "Zekun Shi"
       user-mail-address "zekun@neuri.ai")
 #+END_SRC
-* Git
-#+BEGIN_SRC emacs-lisp
-(defcustom magit-gitk-executable
-  (or (and (eq system-type 'windows-nt)
-           (let ((exe (magit-git-string
-                       "-c" "alias.X=!x() { which \"$1\" | cygpath -mf -; }; x"
-                       "X" "gitk.exe")))
-             (and exe (file-executable-p exe) exe)))
-      (executable-find "gitk") "gitk")
-  "The Gitk executable."
-  :group 'magit-extras
-  :set-after '(magit-git-executable)
-  :type 'string)
-#+END_SRC
 
 * Themes
 Horizon themes need to swap background
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'doom-solarized-light)
-;; (setq doom-theme 'doom-horizon)
-;; (after! solaire-mode (solaire-mode-swap-bg))
+;; (setq doom-theme 'doom-solarized-light)
+(setq doom-theme 'doom-horizon)
+(setq solaire-mode-auto-swap-bg nil)
 #+END_SRC
 
 * Fonts
@@ -84,11 +70,21 @@ Add spacemacs-esque key-bindings.
 
 * Julia
 #+BEGIN_SRC emacs-lisp
-(require 'lsp-julia)
+(straight-use-package 'eglot-jl)
+;; (require 'lsp-julia)
 ;; (add-hook 'julia-mode-hook
 ;;   '(progn
 ;;     (eglot-jl-init)
 ;;     (eglot)))
+#+END_SRC
+
+* LaTeX
+#+BEGIN_SRC emacs-lisp
+(setq TeX-engine 'xetex)
+(when EMACS28+
+  (add-hook 'latex-mode-hook #'TeX-latex-mode))
+;; (setq TeX-view-program-selection '((output-pdf "Zathura")))
+;; (setq TeX-source-correlate-start-server t)
 #+END_SRC
 
 * vterm
@@ -110,12 +106,11 @@ Change default sorting.
 * Spell checking
 Make flyspell faster:
 #+BEGIN_SRC emacs-lisp
-(after! flyspell (require 'flyspell-lazy) (flyspell-lazy-mode 1))
+;; (after! flyspell (require 'flyspell-lazy) (flyspell-lazy-mode 1))
 (setq ispell-dictionary "en-custom")
 (setq ispell-local-dictionary "en-custom")
 (setq flyspell-default-dictionary "en-custom")
 (setq default-buffer-file-coding-system 'no-conversion)
-
 #+END_SRC
 
 Use a custom English dictionary.
@@ -141,13 +136,6 @@ Use a custom English dictionary.
    (list
     (cfw:org-create-source "#09f7a0")  ; orgmode source
     (cfw:ical-create-source "gcal" my-gcal "IndianRed")))) ; google calendar ICS
-#+END_SRC
-
-* LaTeX
-#+BEGIN_SRC emacs-lisp
-(setq TeX-engine 'xetex)
-(when EMACS28+
-  (add-hook 'latex-mode-hook #'TeX-latex-mode))
 #+END_SRC
 
 * WebKit

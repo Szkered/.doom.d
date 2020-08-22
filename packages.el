@@ -75,5 +75,4 @@
 (package! smartrep)
 (package! ob-browser)
 (package! tldr)
-(package! lsp-julia)
 (package! eglot-jl)
