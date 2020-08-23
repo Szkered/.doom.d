@@ -76,3 +76,6 @@
 (package! ob-browser)
 (package! tldr)
 (package! eglot-jl)
+(package! auto-yasnippet)
+(package! auto-latex-snippets
+  :recipe (:host github :repo "tecosaur/Auto-LaTeX-Snippets"))
