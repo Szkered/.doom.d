@@ -71,6 +71,7 @@ Add spacemacs-esque key-bindings.
 * Julia
 #+BEGIN_SRC emacs-lisp
 (straight-use-package 'eglot-jl)
+(set-popup-rule! "^\\*julia.*\\*$"  :size 0.5 :side 'right :slot 1 :ttl nil :select nil :modeline nil :quit nil)
 ;; (require 'lsp-julia)
 ;; (add-hook 'julia-mode-hook
 ;;   '(progn
