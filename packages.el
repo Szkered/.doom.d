@@ -79,3 +79,6 @@
 (package! auto-yasnippet)
 (package! auto-latex-snippets
   :recipe (:host github :repo "tecosaur/Auto-LaTeX-Snippets"))
+(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
+  :pin "cc02f25337...")
+(package! org-superstar)

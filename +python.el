@@ -28,7 +28,7 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
     (if (and line (string-match trace line))
         (kill-whole-line)
       (progn
-        (back-to-indentation)
+        ;; (back-to-indentation)
         (insert trace)
         (insert "\n")
         (python-indent-line)))))
