@@ -16,6 +16,7 @@
     "O" 'org-clock-out
     "R" 'org-refile
     )
+  (org-superstar-mode)
   )
 
 (setq org-todo-keywords
