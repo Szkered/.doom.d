@@ -1,0 +1,4 @@
+# key: pd
+# name: partial derivative
+# --
+\\partial_{$1}$0

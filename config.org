@@ -15,8 +15,9 @@
 * Better Defaults
 
 ** Buffer default mode
+Somehow this slow down start up time
 #+BEGIN_SRC emacs-lisp
-(setq initial-major-mode 'emacs-lisp-mode)
+;; (setq initial-major-mode 'emacs-lisp-mode)
 #+END_SRC
 
 ** Shorten wait time
@@ -31,14 +32,20 @@
 (setq yas-triggers-in-field t)
 #+END_SRC
 
+** Tramp
+#+BEGIN_SRC emacs-lisp
+(setq tramp-copy-size-limit nil)
+#+END_SRC
+
 * Visual Settings
 
 ** Themes
 Horizon themes need to swap background
 #+BEGIN_SRC emacs-lisp
 ;; (setq doom-theme 'doom-solarized-light)
-(setq doom-theme 'doom-horizon)
-(setq solaire-mode-auto-swap-bg nil)
+;; (setq doom-theme 'doom-horizon)
+(setq doom-theme 'doom-spacegrey)
+;; (setq solaire-mode-auto-swap-bg nil)
 #+END_SRC
 
 ** Fonts
@@ -46,6 +53,7 @@ Nice condensed fonts.
 #+BEGIN_SRC emacs-lisp
 ;; (setq doom-font (font-spec :family "Iosevka Term SS04" :size 16 :weight 'medium))
 ;; (setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 14))
+
 (setq doom-font (font-spec :family "Iosevka Term SS04" :size 22 :weight 'medium))
 (setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 18))
 #+END_SRC
