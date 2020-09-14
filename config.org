@@ -44,8 +44,10 @@ Horizon themes need to swap background
 #+BEGIN_SRC emacs-lisp
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-horizon)
+;; (setq doom-theme 'doom-flatwhite)
 (setq doom-theme 'doom-spacegrey)
 ;; (setq solaire-mode-auto-swap-bg nil)
+(setq solaire-mode-auto-swap-bg t)
 #+END_SRC
 
 ** Fonts
@@ -54,8 +56,24 @@ Nice condensed fonts.
 ;; (setq doom-font (font-spec :family "Iosevka Term SS04" :size 16 :weight 'medium))
 ;; (setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 14))
 
-(setq doom-font (font-spec :family "Iosevka Term SS04" :size 22 :weight 'medium))
-(setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 18))
+;; (setq doom-font (font-spec :family "Iosevka Term SS04" :size 22 :weight 'medium))
+;; (setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 18))
+
+(setq doom-font (font-spec :family "Iosevka Term" :size 22 :weight 'medium))
+(setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 18))
+
+;; (setq doom-font (font-spec :family "Iosevka Term Slab" :size 22 :weight 'medium))
+;; (setq doom-variable-pitch-font (font-spec :family "Iosevka Slab" :size 18))
+
+;; (setq doom-font (font-spec :family "Operator Mono" :size 22 :weight 'light))
+;; (setq doom-variable-pitch-font (font-spec :family "Operator Mono" :size 18))
+
+;; (setq doom-font (font-spec :family "IBM Plex Mono" :size 18 :weight 'regular))
+;; (setq doom-variable-pitch-font (font-spec :family "IBM Plex Sans" :size 14))
+
+;; (setq doom-font (font-spec :family "IBM Plex Mono" :size 14 :weight 'regular))
+;; (setq doom-variable-pitch-font (font-spec :family "IBM Plex Sans" :size 10))
+
 #+END_SRC
 
 ** Line number
@@ -215,6 +233,7 @@ loads large files in chunks
 
 * Spacemacs emulation
 Add spacemacs-esque key-bindings.
+364eecd * master origin/master fix: layouts transient state
 #+BEGIN_SRC emacs-lisp
 (setq doom-localleader-key ",")
 (load! "~/.doom.d/modules/spacemacs/+spacemacs")

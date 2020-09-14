@@ -63,6 +63,7 @@
 
  (:after julia-mode
   (:map julia-mode-map
+   :n "K" 'eldoc-doc-buffer
    :localleader
    :n "'" '+julia/open-repl
    )
