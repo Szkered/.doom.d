@@ -45,6 +45,7 @@ Horizon themes need to swap background
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-horizon)
 ;; (setq doom-theme 'doom-flatwhite)
+
 (setq doom-theme 'doom-spacegrey)
 ;; (setq solaire-mode-auto-swap-bg nil)
 (setq solaire-mode-auto-swap-bg t)
@@ -61,6 +62,9 @@ Nice condensed fonts.
 
 (setq doom-font (font-spec :family "Iosevka Term" :size 22 :weight 'medium))
 (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 18))
+
+;; (setq doom-font (font-spec :family "Iosevka Term" :size 16 :weight 'medium))
+;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 14))
 
 ;; (setq doom-font (font-spec :family "Iosevka Term Slab" :size 22 :weight 'medium))
 ;; (setq doom-variable-pitch-font (font-spec :family "Iosevka Slab" :size 18))
