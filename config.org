@@ -42,11 +42,11 @@ Somehow this slow down start up time
 ** Themes
 Horizon themes need to swap background
 #+BEGIN_SRC emacs-lisp
+;; (load! "~/.doom.d/themes/zaiste-emacs-theme/zaiste-theme.el")
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-horizon)
-;; (setq doom-theme 'doom-flatwhite)
-
-(setq doom-theme 'doom-spacegrey)
+(setq doom-theme 'doom-flatwhite)
+;; (setq doom-theme 'doom-spacegrey)
 ;; (setq solaire-mode-auto-swap-bg nil)
 (setq solaire-mode-auto-swap-bg t)
 #+END_SRC
@@ -60,8 +60,12 @@ Nice condensed fonts.
 ;; (setq doom-font (font-spec :family "Iosevka Term SS04" :size 22 :weight 'medium))
 ;; (setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 18))
 
-(setq doom-font (font-spec :family "Iosevka Term" :size 22 :weight 'medium))
-(setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 18))
+;; (setq doom-font (font-spec :family "Iosevka Term" :size 22 :weight 'medium))
+;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 18))
+
+(setq doom-font (font-spec :family "Iosevka Term" :size 32 :weight 'medium))
+(setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 28))
+;; (setq doom-variable-pitch-font (font-spec :family "Overpass" :size 28))
 
 ;; (setq doom-font (font-spec :family "Iosevka Term" :size 16 :weight 'medium))
 ;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 14))
@@ -89,8 +93,8 @@ No line number.
 ** Centred window mode
 I want to achieve the look like writeroom where top and bottom margins are large, but it's tricky.
 #+BEGIN_SRC emacs-lisp
-;; (setq cwm-frame-internal-border 200)
-;; (setq cwm-use-vertical-padding t)
+(setq cwm-frame-internal-border 200)
+(setq cwm-use-vertical-padding t)
 #+END_SRC
 
 ** Modeline
@@ -112,110 +116,110 @@ Change default sorting.
 #+END_SRC
 
 ** Splash Screen
-#+BEGIN_SRC emacs-lisp
-(defvar fancy-splash-image-template
-  (expand-file-name "misc/splash-images/blackhole-lines-template.svg" doom-private-dir)
-  "Default template svg used for the splash image, with substitutions from ")
-(defvar fancy-splash-image-nil
-  (expand-file-name "misc/splash-images/transparent-pixel.png" doom-private-dir)
-  "An image to use at minimum size, usually a transparent pixel")
+# #+BEGIN_SRC emacs-lisp
+# (defvar fancy-splash-image-template
+#   (expand-file-name "misc/splash-images/blackhole-lines-template.svg" doom-private-dir)
+#   "Default template svg used for the splash image, with substitutions from ")
+# (defvar fancy-splash-image-nil
+#   (expand-file-name "misc/splash-images/transparent-pixel.png" doom-private-dir)
+#   "An image to use at minimum size, usually a transparent pixel")
 
-(setq fancy-splash-sizes
-  `((:height 500 :min-height 50 :padding (0 . 4) :template ,(expand-file-name "misc/splash-images/blackhole-lines-0.svg" doom-private-dir))
-    (:height 440 :min-height 42 :padding (1 . 4) :template ,(expand-file-name "misc/splash-images/blackhole-lines-0.svg" doom-private-dir))
-    (:height 400 :min-height 38 :padding (1 . 4) :template ,(expand-file-name "misc/splash-images/blackhole-lines-1.svg" doom-private-dir))
-    (:height 350 :min-height 36 :padding (1 . 3) :template ,(expand-file-name "misc/splash-images/blackhole-lines-2.svg" doom-private-dir))
-    (:height 300 :min-height 34 :padding (1 . 3) :template ,(expand-file-name "misc/splash-images/blackhole-lines-3.svg" doom-private-dir))
-    (:height 250 :min-height 32 :padding (1 . 2) :template ,(expand-file-name "misc/splash-images/blackhole-lines-4.svg" doom-private-dir))
-    (:height 200 :min-height 30 :padding (1 . 2) :template ,(expand-file-name "misc/splash-images/blackhole-lines-5.svg" doom-private-dir))
-    (:height 100 :min-height 24 :padding (1 . 2) :template ,(expand-file-name "misc/splash-images/emacs-e-template.svg" doom-private-dir))
-    (:height 0   :min-height 0  :padding (0 . 0) :file ,fancy-splash-image-nil)))
+# (setq fancy-splash-sizes
+#   `((:height 500 :min-height 50 :padding (0 . 4) :template ,(expand-file-name "misc/splash-images/blackhole-lines-0.svg" doom-private-dir))
+#     (:height 440 :min-height 42 :padding (1 . 4) :template ,(expand-file-name "misc/splash-images/blackhole-lines-0.svg" doom-private-dir))
+#     (:height 400 :min-height 38 :padding (1 . 4) :template ,(expand-file-name "misc/splash-images/blackhole-lines-1.svg" doom-private-dir))
+#     (:height 350 :min-height 36 :padding (1 . 3) :template ,(expand-file-name "misc/splash-images/blackhole-lines-2.svg" doom-private-dir))
+#     (:height 300 :min-height 34 :padding (1 . 3) :template ,(expand-file-name "misc/splash-images/blackhole-lines-3.svg" doom-private-dir))
+#     (:height 250 :min-height 32 :padding (1 . 2) :template ,(expand-file-name "misc/splash-images/blackhole-lines-4.svg" doom-private-dir))
+#     (:height 200 :min-height 30 :padding (1 . 2) :template ,(expand-file-name "misc/splash-images/blackhole-lines-5.svg" doom-private-dir))
+#     (:height 100 :min-height 24 :padding (1 . 2) :template ,(expand-file-name "misc/splash-images/emacs-e-template.svg" doom-private-dir))
+#     (:height 0   :min-height 0  :padding (0 . 0) :file ,fancy-splash-image-nil)))
 
-(defvar fancy-splash-sizes
-  `((:height 500 :min-height 50 :padding (0 . 2))
-    (:height 440 :min-height 42 :padding (1 . 4))
-    (:height 330 :min-height 35 :padding (1 . 3))
-    (:height 200 :min-height 30 :padding (1 . 2))
-    (:height 0   :min-height 0  :padding (0 . 0) :file ,fancy-splash-image-nil))
-  "list of plists with the following properties
-  :height the height of the image
-  :min-height minimum `frame-height' for image
-  :padding `+doom-dashboard-banner-padding' to apply
-  :template non-default template file
-  :file file to use instead of template")
+# (defvar fancy-splash-sizes
+#   `((:height 500 :min-height 50 :padding (0 . 2))
+#     (:height 440 :min-height 42 :padding (1 . 4))
+#     (:height 330 :min-height 35 :padding (1 . 3))
+#     (:height 200 :min-height 30 :padding (1 . 2))
+#     (:height 0   :min-height 0  :padding (0 . 0) :file ,fancy-splash-image-nil))
+#   "list of plists with the following properties
+#   :height the height of the image
+#   :min-height minimum `frame-height' for image
+#   :padding `+doom-dashboard-banner-padding' to apply
+#   :template non-default template file
+#   :file file to use instead of template")
 
-(defvar fancy-splash-template-colours
-  '(("$colour1" . keywords) ("$colour2" . type) ("$colour3" . base5) ("$colour4" . base8))
-  "list of colour-replacement alists of the form (\"$placeholder\" . 'theme-colour) which applied the template")
+# (defvar fancy-splash-template-colours
+#   '(("$colour1" . keywords) ("$colour2" . type) ("$colour3" . base5) ("$colour4" . base8))
+#   "list of colour-replacement alists of the form (\"$placeholder\" . 'theme-colour) which applied the template")
 
-(unless (file-exists-p (expand-file-name "theme-splashes" doom-cache-dir))
-  (make-directory (expand-file-name "theme-splashes" doom-cache-dir) t))
+# (unless (file-exists-p (expand-file-name "theme-splashes" doom-cache-dir))
+#   (make-directory (expand-file-name "theme-splashes" doom-cache-dir) t))
 
-(defun fancy-splash-filename (theme-name height)
-  (expand-file-name (concat (file-name-as-directory "theme-splashes")
-                            (symbol-name doom-theme)
-                            "-" (number-to-string height) ".svg")
-                    doom-cache-dir))
+# (defun fancy-splash-filename (theme-name height)
+#   (expand-file-name (concat (file-name-as-directory "theme-splashes")
+#                             (symbol-name doom-theme)
+#                             "-" (number-to-string height) ".svg")
+#                     doom-cache-dir))
 
-(defun fancy-splash-clear-cache ()
-  "Delete all cached fancy splash images"
-  (interactive)
-  (delete-directory (expand-file-name "theme-splashes" doom-cache-dir) t)
-  (message "Cache cleared!"))
+# (defun fancy-splash-clear-cache ()
+#   "Delete all cached fancy splash images"
+#   (interactive)
+#   (delete-directory (expand-file-name "theme-splashes" doom-cache-dir) t)
+#   (message "Cache cleared!"))
 
-(defun fancy-splash-generate-image (template height)
-  "Read TEMPLATE and create an image if HEIGHT with colour substitutions as  ;described by `fancy-splash-template-colours' for the current theme"
-    (with-temp-buffer
-      (insert-file-contents template)
-      (re-search-forward "$height" nil t)
-      (replace-match (number-to-string height) nil nil)
-      (dolist (substitution fancy-splash-template-colours)
-        (beginning-of-buffer)
-        (while (re-search-forward (car substitution) nil t)
-          (replace-match (doom-color (cdr substitution)) nil nil)))
-      (write-region nil nil
-                    (fancy-splash-filename (symbol-name doom-theme) height) nil nil)))
+# (defun fancy-splash-generate-image (template height)
+#   "Read TEMPLATE and create an image if HEIGHT with colour substitutions as  ;described by `fancy-splash-template-colours' for the current theme"
+#     (with-temp-buffer
+#       (insert-file-contents template)
+#       (re-search-forward "$height" nil t)
+#       (replace-match (number-to-string height) nil nil)
+#       (dolist (substitution fancy-splash-template-colours)
+#         (beginning-of-buffer)
+#         (while (re-search-forward (car substitution) nil t)
+#           (replace-match (doom-color (cdr substitution)) nil nil)))
+#       (write-region nil nil
+#                     (fancy-splash-filename (symbol-name doom-theme) height) nil nil)))
 
-(defun fancy-splash-generate-images ()
-  "Perform `fancy-splash-generate-image' in bulk"
-  (dolist (size fancy-splash-sizes)
-    (unless (plist-get size :file)
-      (fancy-splash-generate-image (or (plist-get size :file)
-                                       (plist-get size :template)
-                                       fancy-splash-image-template)
-                                   (plist-get size :height)))))
+# (defun fancy-splash-generate-images ()
+#   "Perform `fancy-splash-generate-image' in bulk"
+#   (dolist (size fancy-splash-sizes)
+#     (unless (plist-get size :file)
+#       (fancy-splash-generate-image (or (plist-get size :file)
+#                                        (plist-get size :template)
+#                                        fancy-splash-image-template)
+#                                    (plist-get size :height)))))
 
-(defun ensure-theme-splash-images-exist (&optional height)
-  (unless (file-exists-p (fancy-splash-filename
-                          (symbol-name doom-theme)
-                          (or height
-                              (plist-get (car fancy-splash-sizes) :height))))
-    (fancy-splash-generate-images)))
+# (defun ensure-theme-splash-images-exist (&optional height)
+#   (unless (file-exists-p (fancy-splash-filename
+#                           (symbol-name doom-theme)
+#                           (or height
+#                               (plist-get (car fancy-splash-sizes) :height))))
+#     (fancy-splash-generate-images)))
 
-(defun get-appropriate-splash ()
-  (let ((height (frame-height)))
-    (cl-some (lambda (size) (when (>= height (plist-get size :min-height)) size))
-             fancy-splash-sizes)))
+# (defun get-appropriate-splash ()
+#   (let ((height (frame-height)))
+#     (cl-some (lambda (size) (when (>= height (plist-get size :min-height)) size))
+#              fancy-splash-sizes)))
 
-(setq fancy-splash-last-size nil)
-(setq fancy-splash-last-theme nil)
-(defun set-appropriate-splash (&optional frame)
-  (let ((appropriate-image (get-appropriate-splash)))
-    (unless (and (equal appropriate-image fancy-splash-last-size)
-                 (equal doom-theme fancy-splash-last-theme)))
-    (unless (plist-get appropriate-image :file)
-      (ensure-theme-splash-images-exist (plist-get appropriate-image :height)))
-    (setq fancy-splash-image
-          (or (plist-get appropriate-image :file)
-              (fancy-splash-filename (symbol-name doom-theme) (plist-get appropriate-image :height))))
-    (setq +doom-dashboard-banner-padding (plist-get appropriate-image :padding))
-    (setq fancy-splash-last-size appropriate-image)
-    (setq fancy-splash-last-theme doom-theme)
-    (+doom-dashboard-reload)))
+# (setq fancy-splash-last-size nil)
+# (setq fancy-splash-last-theme nil)
+# (defun set-appropriate-splash (&optional frame)
+#   (let ((appropriate-image (get-appropriate-splash)))
+#     (unless (and (equal appropriate-image fancy-splash-last-size)
+#                  (equal doom-theme fancy-splash-last-theme)))
+#     (unless (plist-get appropriate-image :file)
+#       (ensure-theme-splash-images-exist (plist-get appropriate-image :height)))
+#     (setq fancy-splash-image
+#           (or (plist-get appropriate-image :file)
+#               (fancy-splash-filename (symbol-name doom-theme) (plist-get appropriate-image :height))))
+#     (setq +doom-dashboard-banner-padding (plist-get appropriate-image :padding))
+#     (setq fancy-splash-last-size appropriate-image)
+#     (setq fancy-splash-last-theme doom-theme)
+#     (+doom-dashboard-reload)))
 
-(add-hook 'window-size-change-functions #'set-appropriate-splash)
-(add-hook 'doom-load-theme-hook #'set-appropriate-splash)
-#+END_SRC
+# (add-hook 'window-size-change-functions #'set-appropriate-splash)
+# (add-hook 'doom-load-theme-hook #'set-appropriate-splash)
+# #+END_SRC
 
 
 ** Extra color for Emacs's info-mode
@@ -284,15 +288,49 @@ Add spacemacs-esque key-bindings.
 *** auto latex snippets
 this is awesome!
 #+BEGIN_SRC emacs-lisp
-(use-package! auto-latex-snippets
-  :hook (LaTeX-mode . auto-latex-snippets-mode)
-  :config
-  (add-to-list 'texmathp-tex-commands '("align*" env-on))
-  (texmathp-compile)
-  (defun als-tex-fold-maybe ()
-      (unless (equal "/" als-transient-snippet-key)
-        (+latex-fold-last-macro-a)))
-    (add-hook 'als-post-snippet-expand-hook #'als-tex-fold-maybe))
+(use-package aas
+  :hook (LaTeX-mode . ass-activate-for-major-mode)
+  :hook (org-mode . ass-activate-for-major-mode)
+  ;; :config
+  ;; (aas-set-snippets 'text-mode
+  ;;                   ;; expand unconditionally
+  ;;                   "o-" "ō"
+  ;;                   "i-" "ī"
+  ;;                   "a-" "ā"
+  ;;                   "u-" "ū"
+  ;;                   "e-" "ē"
+  ;;                   )
+  )
+(use-package! laas
+  :hook (LaTeX-mode . laas-mode)
+  :config ; do whatever here
+  (aas-set-snippets 'laas-mode
+                    ;; set condition!
+                    :cond #'texmathp ; expand only while in math
+                    "supp" "\\supp"
+                    "On" "O(n)"
+                    "O1" "O(1)"
+                    "Olog" "O(\\log n)"
+                    "Olon" "O(n \\log n)"
+                    ;; bind to functions!
+                    ;; "//" (lambda () (interactive)
+                    ;;          (yas-expand-snippet "\\frac{$1}{$2}$0"))
+                    "Span" (lambda () (interactive)
+                             (yas-expand-snippet "\\Span($1)$0"))))
+;; (use-package! auto-latex-snippets
+;;   :hook (LaTeX-mode . auto-latex-snippets-mode)
+;;   :config
+;;   (add-to-list 'texmathp-tex-commands '("align*" env-on))
+;;   (texmathp-compile)
+;;   (defun als-tex-fold-maybe ()
+;;       (unless (equal "/" als-transient-snippet-key)
+;;         (+latex-fold-last-macro-a)))
+;;     (add-hook 'als-post-snippet-expand-hook #'als-tex-fold-maybe))
+#+END_SRC
+
+*** pdf should auto revert
+#+BEGIN_SRC emacs-lisp
+(add-hook 'pdf-view-mode-hook 'auto-revert-mode)
 #+END_SRC
 
 * vterm
@@ -309,15 +347,15 @@ More scroll back
 * Spell checking
 Make flyspell faster:
 #+BEGIN_SRC emacs-lisp
-(setq ispell-dictionary "en-custom")
-(setq ispell-local-dictionary "en-custom")
-(setq flyspell-default-dictionary "en-custom")
-(setq default-buffer-file-coding-system 'no-conversion)
+;; (setq ispell-dictionary "en-custom")
+;; (setq ispell-local-dictionary "en-custom")
+;; (setq flyspell-default-dictionary "en-custom")
+;; (setq default-buffer-file-coding-system 'no-conversion)
 #+END_SRC
 
 Use a custom English dictionary.
 #+BEGIN_SRC emacs-lisp
-(ispell-change-dictionary "en-custom")
+;; (ispell-change-dictionary "en-custom")
 #+END_SRC
 
 * Calendar

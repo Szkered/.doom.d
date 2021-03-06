@@ -13,10 +13,12 @@
 
  (:when (featurep! :editor multiple-cursors)
   :nv "C-n" #'evil-mc-make-and-goto-next-match
-  :nv "C-p" #'evil-mc-make-and-goto-prev-match
-  )
+  :nv "C-p" #'evil-mc-make-and-goto-prev-match)
+
 
  (:leader
+  ;; calendar
+  :n "c" 'my-open-calendar
 
   ;; workspace / window management
   :n "o" 'spacemacs/workspaces-transient-state/body
@@ -40,34 +42,44 @@
   :n "ji" 'imenu
   :n "." 'evil-goto-definition
   :n "fb" 'bookmark-jump
-  :n "bb" 'switch-to-buffer
-  )
+  :n "bb" 'switch-to-buffer)
+
 
  (:after multi-vterm
   (:map multi-vterm-mode-map
    :leader
    :n "mc" 'multi-vterm
    :n "mp" 'multi-vterm-prev
-   :n "mn" 'multi-vterm-next
+   :n "mn" 'multi-vterm-next))
+
+ (:after calfw
+  (:map cfw:calendar-mode-map
+   ;; "<return>" 'cfw:show-details-command
+   :n "RET" 'cfw:show-details-command
+   :n "SPC" 'nil
+   )
+  (:map cfw:details-mode-map
+   :n "q" 'cfw:details-kill-buffer-command
    )
   )
+
 
  (:after dap-mode
   (:map dap-mode-map
    :leader
    :n "dd" 'dap-debug
    :n "de" 'dap-debug-edit-template
-   :n "d." 'dap-hydra
-   )
-  )
+   :n "d." 'dap-hydra))
+
+
 
  (:after julia-mode
   (:map julia-mode-map
    :n "K" 'eldoc-doc-buffer
    :localleader
-   :n "'" '+julia/open-repl
-   )
-  )
+   :n "'" '+julia/open-repl)))
+
+
 
  ;; (:when (:featurep! :lang python)
  ;;  (:map python-mod-map
@@ -80,7 +92,7 @@
  ;;   :n "ru" #'python-autoflake)
  ;;  )
 
- )
+
 
 (after! evil (evil-escape-mode nil))
 

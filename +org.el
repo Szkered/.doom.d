@@ -1,6 +1,7 @@
 ;;; ~/.doom.d/+org.el -*- lexical-binding: t; -*-
 
-(setq org-directory "~/Dropbox/notes/")
+(setq org-directory "~/Dropbox/notes")
+(setq org-agenda-files (directory-files-recursively "~/Dropbox/notes/" "\\.org$"))
 
 (setq org-superstar-headline-bullets-list '("⁖"))
 (setq org-ellipsis " ... ")
@@ -77,77 +78,77 @@
          (
           (tags "PRIORITY=\"A\""
                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-prefix-format " %-2i %-15:c")
+                 (org-agenda-prefix-format " %-2:i")
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-remove-tags t)
-                 (org-agenda-overriding-header "\n\n⚡ Doing it Now:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
-                 ))
+                 (org-agenda-overriding-header "\n\n⚡ Doing it Now:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
+
           (tags "TODO=\"AIRBORNE\""
                 ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                 (air-org-skip-subtree-if-priority ?A)
                                                 (air-org-skip-subtree-if-priority ?B)
                                                 (air-org-skip-subtree-if-priority ?D)))
-                 (org-agenda-prefix-format " %-2i %-15:c")
+                 (org-agenda-prefix-format " %-2:i")
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-remove-tags t)
-                 (org-agenda-overriding-header "⚡ AIRBORNE projects:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
-                 ))
+                 (org-agenda-overriding-header "⚡ AIRBORNE projects:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
+
           (tags "PRIORITY=\"B\""
                 ((org-agenda-skip-function '(or (org-agenda-skip-entry-if 'todo 'done)
                                                 (org-agenda-skip-entry-if 'todo '("RUNWAY" "HANGER"))))
-                 (org-agenda-prefix-format " %-2i %-15:c")
+                 (org-agenda-prefix-format " %-2:i")
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-remove-tags t)
-                 (org-agenda-overriding-header "⚡ Learning:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
-                 ))
+                 (org-agenda-overriding-header "⚡ Learning:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
+
           (tags "PRIORITY=\"D\""
                 ((org-agenda-skip-function '(or (org-agenda-skip-entry-if 'todo 'done)
                                                 (org-agenda-skip-entry-if 'todo '("RUNWAY" "HANGER"))))
-                 (org-agenda-prefix-format " %-2i %-15:c")
+                 (org-agenda-prefix-format " %-2:i")
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-remove-tags t)
-                 (org-agenda-overriding-header "⚡ Long Term:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
-                 ))
+                 (org-agenda-overriding-header "⚡ Habits:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
+
           (agenda "" (
                       (org-agenda-start-day "+0d")
                       (org-agenda-span 5)
                       (org-agenda-overriding-header "⚡ Schedule:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
                       ;; (org-agenda-repeating-timestamp-show-all nil)
                       (org-agenda-remove-tags t)
-                      ;; (org-agenda-prefix-format   "  %-3i  %-15:c %t%s")
+                      (org-agenda-prefix-format   "%-3:i %t%s")
                       ;; (org-agenda-todo-keyword-format " ☐ ")
                       (org-agenda-current-time-string "⮜┈┈┈┈┈┈┈ now")
                       (org-agenda-scheduled-leaders '("" ""))
                       (org-agenda-time-grid (quote ((daily today remove-match)
                                                     (0900 1200 1500 1800 2100)
-                                                    "      " "┈┈┈┈┈┈┈┈┈┈┈┈┈")))
-                      ))
+                                                    "      " "┈┈┈┈┈┈┈┈┈┈┈┈┈")))))
+
           (tags "TODO=\"RUNWAY\""
                 ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                 (air-org-skip-subtree-if-priority ?A)))
-                 (org-agenda-prefix-format " %-2i %-15:c")
+                 (org-agenda-prefix-format " %-2:i")
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-remove-tags t)
-                 (org-agenda-overriding-header "⚡ Projects on the RUNWAY:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
-                 ))
+                 (org-agenda-overriding-header "⚡ Projects on the RUNWAY:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
+
           (alltodo ""
                    ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                    (air-org-skip-subtree-if-priority ?A)
                                                    (org-agenda-skip-if nil '(scheduled deadline))
                                                    (org-agenda-skip-entry-if 'todo '("AIRBORNE" "RUNWAY"))))
-                    (org-agenda-prefix-format " %-2i %-15:c")
+                    (org-agenda-prefix-format " %-2:i")
                     (org-agenda-todo-keyword-format "")
                     (org-agenda-remove-tags t)
-                    (org-agenda-overriding-header "⚡ Projects / Tasks in the HANGER:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")
-                    ))
-          )
+                    (org-agenda-overriding-header "⚡ Projects / Tasks in the HANGER:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺"))))
+
+
          ((org-agenda-compact-blocks nil)
           (org-agenda-archives-mode t)
           ;; (org-agenda-start-with-log-mode '(closed))
           (org-agenda-start-with-log-mode t)
           (org-agenda-start-with-clockreport-mode t)
-          (org-agenda-start-on-weekday 1)
-          ))
+          (org-agenda-start-on-weekday 1)))
+
         ("w" "Weekly review"
          agenda ""
          ((org-agenda-span 'week)
@@ -155,23 +156,25 @@
           (org-agenda-start-with-log-mode t)
           (org-agenda-start-with-clockreport-mode t)
           (org-agenda-archives-mode t)
-          (org-agenda-remove-tags t)
-          )
-         )
-        )
-      )
+          (org-agenda-remove-tags t)))))
 
 
 (setq org-agenda-category-icon-alist
       `(("joural" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
+        ("20210303213331-org_roam" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
+        ("20210303213545-org_mode" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
         ;; ("neuri" ,(list (all-the-icons-faicon "black-tie" :height 0.9)) nil nil :ascent center)
         ("neuri" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
+        ("career" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
         ;; ("math" ,(list (all-the-icons-faicon "graduation-cap" :height 0.65)) nil nil :ascent center)
         ("math" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         ("quantum" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         ("nus" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         ("music" ,(list (all-the-icons-faicon "music")) nil nil :ascent center)
         ("health" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
+        ("20210305195002-workouts" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
+        ("20210305195533-nutrition" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
+        ("20210306093045-mindfulness" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
         ("my_fin" ,(list (all-the-icons-faicon "usd")) nil nil :ascent center)
         ("quant_fin" ,(list (all-the-icons-faicon "line-chart" :height 0.68)) nil nil :ascent center)
         ;; ("ml" ,(list (all-the-icons-faicon "cog")) nil nil :ascent center)
@@ -273,3 +276,40 @@
              (company-mode t)))
   )
 (add-hook 'org-src-mode-hook 'my-org-python)
+
+;; pomodoro
+(setq org-pomodoro-length 50)
+(setq org-pomodoro-short-break-length 10)
+(setq org-pomodoro-long-break-length 30)
+
+;; roam
+(setq org-roam-directory "~/Dropbox/notes/roam")
+
+(use-package org-roam-server
+  :ensure t
+  :config
+  (setq org-roam-server-host "127.0.0.1"
+        org-roam-server-port 8080
+        org-roam-server-authenticate nil
+        org-roam-server-export-inline-images t
+        org-roam-server-serve-files nil
+        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+        org-roam-server-network-poll t
+        org-roam-server-network-arrows nil
+        org-roam-server-network-label-truncate t
+        org-roam-server-network-label-truncate-length 60
+        org-roam-server-network-label-wrap-length 20))
+
+(defun org-roam-server-open ()
+  "Ensure the server is active, then open the roam graph."
+  (interactive)
+  (smartparens-global-mode -1)
+  (org-roam-server-mode 1)
+  (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port))
+  (smartparens-global-mode 1))
+
+;; automatically enable server-mode
+(after! org-roam
+  (smartparens-global-mode -1)
+  (org-roam-server-mode)
+  (smartparens-global-mode 1))

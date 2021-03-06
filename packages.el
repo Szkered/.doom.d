@@ -77,9 +77,15 @@
 (package! tldr)
 (package! eglot-jl)
 (package! auto-yasnippet)
-(package! auto-latex-snippets
-  :recipe (:host github :repo "tecosaur/Auto-LaTeX-Snippets"))
+(package! org-pomodoro)
+(package! aas)
+(package! laas
+  :recipe (:host github :repo "tecosaur/LaTeX-auto-activating-snippets"))
+;; (package! auto-latex-snippets
+;;   :recipe (:host github :repo "tecosaur/LaTeX-auto-activating-snippets"))
 (package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
   :pin "cc02f25337...")
 (package! org-superstar)
 (unpin! doom-themes)                    ;; to get latest themes
+(package! org-roam-server)
+(package! org-timeline)
