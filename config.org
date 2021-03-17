@@ -291,15 +291,6 @@ this is awesome!
 (use-package aas
   :hook (LaTeX-mode . ass-activate-for-major-mode)
   :hook (org-mode . ass-activate-for-major-mode)
-  ;; :config
-  ;; (aas-set-snippets 'text-mode
-  ;;                   ;; expand unconditionally
-  ;;                   "o-" "ō"
-  ;;                   "i-" "ī"
-  ;;                   "a-" "ā"
-  ;;                   "u-" "ū"
-  ;;                   "e-" "ē"
-  ;;                   )
   )
 (use-package! laas
   :hook (LaTeX-mode . laas-mode)
@@ -312,20 +303,8 @@ this is awesome!
                     "O1" "O(1)"
                     "Olog" "O(\\log n)"
                     "Olon" "O(n \\log n)"
-                    ;; bind to functions!
-                    ;; "//" (lambda () (interactive)
-                    ;;          (yas-expand-snippet "\\frac{$1}{$2}$0"))
                     "Span" (lambda () (interactive)
                              (yas-expand-snippet "\\Span($1)$0"))))
-;; (use-package! auto-latex-snippets
-;;   :hook (LaTeX-mode . auto-latex-snippets-mode)
-;;   :config
-;;   (add-to-list 'texmathp-tex-commands '("align*" env-on))
-;;   (texmathp-compile)
-;;   (defun als-tex-fold-maybe ()
-;;       (unless (equal "/" als-transient-snippet-key)
-;;         (+latex-fold-last-macro-a)))
-;;     (add-hook 'als-post-snippet-expand-hook #'als-tex-fold-maybe))
 #+END_SRC
 
 *** pdf should auto revert

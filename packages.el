@@ -89,3 +89,4 @@
 (unpin! doom-themes)                    ;; to get latest themes
 (package! org-roam-server)
 (package! org-timeline)
+(package! org-gcal)

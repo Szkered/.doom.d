@@ -1,8 +1,10 @@
-;;; ~/.doom.d/+org.el -*- lexical-binding: t; -*-
+;;; ~~/.doom.d/+org.el -*- lexical-binding: t; -*-
 
 (setq org-directory "~/Dropbox/notes")
-(setq org-agenda-files (directory-files-recursively "~/Dropbox/notes/" "\\.org$"))
+;; (setq org-agenda-files (directory-files-recursively "~/Dropbox/notes/" "\\.org$"))
 
+;; appearances
+(setq org-hide-emphasis-markers nil)
 (setq org-superstar-headline-bullets-list '("⁖"))
 (setq org-ellipsis " ... ")
 
@@ -18,6 +20,7 @@
     "R" 'org-refile
     )
   (org-superstar-mode)
+  (setq org-agenda-files (directory-files-recursively "~/Dropbox/notes/" "\\.org$"))
   )
 
 (setq org-todo-keywords
@@ -72,50 +75,55 @@
 (setq org-agenda-log-mode-items '(closed state clock))
 (setq org-clock-idle-time 5)
 (setq org-agenda-block-separator (string-to-char " "))
+(setq my-org-agenda-prefix-format " %-2i %(concat \"[\" (car (last(split-string (org-agenda-get-category) \"-\"))) \"]\") %b %t%s")
 (setq org-agenda-custom-commands
       '(
         ("d" "Daily agenda and all TODOs"
          (
           (tags "PRIORITY=\"A\""
                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-prefix-format " %-2:i")
+                 (org-agenda-prefix-format my-org-agenda-prefix-format)
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-remove-tags t)
-                 (org-agenda-overriding-header "\n\n⚡ Doing it Now:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
+                 (org-agenda-overriding-header "\n\n⚡ Imminent:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
 
           (tags "TODO=\"AIRBORNE\""
                 ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                 (air-org-skip-subtree-if-priority ?A)
                                                 (air-org-skip-subtree-if-priority ?B)
                                                 (air-org-skip-subtree-if-priority ?D)))
-                 (org-agenda-prefix-format " %-2:i")
+                 ;; (org-agenda-prefix-format " %-2:i")
+                 (org-agenda-prefix-format my-org-agenda-prefix-format)
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-remove-tags t)
-                 (org-agenda-overriding-header "⚡ AIRBORNE projects:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
+                 (org-agenda-overriding-header "⚡ Airborne:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
 
           (tags "PRIORITY=\"B\""
                 ((org-agenda-skip-function '(or (org-agenda-skip-entry-if 'todo 'done)
                                                 (org-agenda-skip-entry-if 'todo '("RUNWAY" "HANGER"))))
-                 (org-agenda-prefix-format " %-2:i")
+                 ;; (org-agenda-prefix-format " %-2:i")
+                 (org-agenda-prefix-format my-org-agenda-prefix-format)
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-remove-tags t)
-                 (org-agenda-overriding-header "⚡ Learning:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
+                 (org-agenda-overriding-header "⚡ Projects:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
 
           (tags "PRIORITY=\"D\""
                 ((org-agenda-skip-function '(or (org-agenda-skip-entry-if 'todo 'done)
                                                 (org-agenda-skip-entry-if 'todo '("RUNWAY" "HANGER"))))
-                 (org-agenda-prefix-format " %-2:i")
+                 ;; (org-agenda-prefix-format " %-2:i")
+                 (org-agenda-prefix-format my-org-agenda-prefix-format)
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-remove-tags t)
-                 (org-agenda-overriding-header "⚡ Habits:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
+                 (org-agenda-overriding-header "⚡ Deferrible:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
 
           (agenda "" (
                       (org-agenda-start-day "+0d")
-                      (org-agenda-span 5)
+                      (org-agenda-span 2)
                       (org-agenda-overriding-header "⚡ Schedule:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺")
                       ;; (org-agenda-repeating-timestamp-show-all nil)
                       (org-agenda-remove-tags t)
-                      (org-agenda-prefix-format   "%-3:i %t%s")
+                      (org-agenda-prefix-format   "  %-2i %t %s  ")
+                      ;; (org-agenda-prefix-format " %-2i %b %t%s")
                       ;; (org-agenda-todo-keyword-format " ☐ ")
                       (org-agenda-current-time-string "⮜┈┈┈┈┈┈┈ now")
                       (org-agenda-scheduled-leaders '("" ""))
@@ -126,20 +134,22 @@
           (tags "TODO=\"RUNWAY\""
                 ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                 (air-org-skip-subtree-if-priority ?A)))
-                 (org-agenda-prefix-format " %-2:i")
+                 ;; (org-agenda-prefix-format " %-2:i")
+                 (org-agenda-prefix-format my-org-agenda-prefix-format)
                  (org-agenda-todo-keyword-format "")
                  (org-agenda-remove-tags t)
-                 (org-agenda-overriding-header "⚡ Projects on the RUNWAY:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
+                 (org-agenda-overriding-header "⚡ Runway:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺")))
 
           (alltodo ""
                    ((org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                    (air-org-skip-subtree-if-priority ?A)
                                                    (org-agenda-skip-if nil '(scheduled deadline))
                                                    (org-agenda-skip-entry-if 'todo '("AIRBORNE" "RUNWAY"))))
-                    (org-agenda-prefix-format " %-2:i")
+                    ;; (org-agenda-prefix-format " %-2:i")
+                    (org-agenda-prefix-format my-org-agenda-prefix-format)
                     (org-agenda-todo-keyword-format "")
                     (org-agenda-remove-tags t)
-                    (org-agenda-overriding-header "⚡ Projects / Tasks in the HANGER:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺"))))
+                    (org-agenda-overriding-header "⚡ Hanger:\n⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺"))))
 
 
          ((org-agenda-compact-blocks nil)
@@ -156,35 +166,38 @@
           (org-agenda-start-with-log-mode t)
           (org-agenda-start-with-clockreport-mode t)
           (org-agenda-archives-mode t)
+          (org-agenda-prefix-format " %-2i %t %s %b ")
           (org-agenda-remove-tags t)))))
 
+(setq org-agenda-breadcrumbs-separator " 🡒 ")
 
 (setq org-agenda-category-icon-alist
-      `(("joural" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
-        ("20210303213331-org_roam" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
-        ("20210303213545-org_mode" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
+      `((".*org.*" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
+        (".*gtd.*" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
         ;; ("neuri" ,(list (all-the-icons-faicon "black-tie" :height 0.9)) nil nil :ascent center)
-        ("neuri" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
-        ("career" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
+        (".*neuri.*" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
+        (".*career.*" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
         ;; ("math" ,(list (all-the-icons-faicon "graduation-cap" :height 0.65)) nil nil :ascent center)
-        ("math" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
-        ("quantum" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
-        ("nus" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
-        ("music" ,(list (all-the-icons-faicon "music")) nil nil :ascent center)
-        ("health" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
-        ("20210305195002-workouts" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
-        ("20210305195533-nutrition" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
-        ("20210306093045-mindfulness" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
-        ("my_fin" ,(list (all-the-icons-faicon "usd")) nil nil :ascent center)
-        ("quant_fin" ,(list (all-the-icons-faicon "line-chart" :height 0.68)) nil nil :ascent center)
-        ;; ("ml" ,(list (all-the-icons-faicon "cog")) nil nil :ascent center)
-        ("ml" ,(list (all-the-icons-octicon "hubot")) nil nil :ascent center)
-        ("prog" ,(list (all-the-icons-faicon "terminal")) nil nil :ascent center)
-        ("meeting" ,(list (all-the-icons-faicon "commenting")) nil nil :ascent center)
-        ("crypto" ,(list (all-the-icons-faicon "lock")) nil nil :ascent center)
+        (".*math.*" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
+        (".*quantum.*" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
+        (".*nus.*" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
+        (".*MA.*" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
+        (".*music.*" ,(list (all-the-icons-faicon "music")) nil nil :ascent center)
+        (".*health.*" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
+        (".*habit.*" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
+        (".*workouts.*" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
+        (".*nutrition.*" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
+        (".*mindfulness.*" ,(list (all-the-icons-octicon "pulse")) nil nil :ascent center)
+        ;; ("my_fin" ,(list (all-the-icons-faicon "usd")) nil nil :ascent center)
+        (".*fin.*" ,(list (all-the-icons-faicon "line-chart" :height 0.68)) nil nil :ascent center)
+        (".*ml.*" ,(list (all-the-icons-octicon "hubot")) nil nil :ascent center)
+        (".*cs.*" ,(list (all-the-icons-faicon "terminal")) nil nil :ascent center)
+        ;; (".*schedule.*" ,(list (all-the-icons-faicon "commenting")) nil nil :ascent center)
+        (".*schedule.*" ,(list (all-the-icons-octicon "calendar")) nil nil :ascent center)
+        (".*blockchain.*" ,(list (all-the-icons-faicon "lock")) nil nil :ascent center)
         ("vocab" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
-        ("read" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
-        ("cooking" ,(list (all-the-icons-faicon "fire")) nil nil :ascent center)
+        (".*read.*" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
+        (".*cooking.*" ,(list (all-the-icons-faicon "fire")) nil nil :ascent center)
         ))
 
 ;; TO DISPLAY ALL AVAILABLE ICONS
@@ -313,3 +326,9 @@
   (smartparens-global-mode -1)
   (org-roam-server-mode)
   (smartparens-global-mode 1))
+
+;; google calendar integration
+(require 'org-gcal)
+(setq org-gcal-client-id my-gcal-client-id
+      org-gcal-client-secret my-gcal-client-secret
+      org-gcal-fetch-file-alist '(("derek.zekun.shi%40gmail.com" .  "~/Dropbox/notes/roam/schedule.org")))

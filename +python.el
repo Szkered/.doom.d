@@ -94,7 +94,7 @@ as the pyenv version then also return nil. This works around https://github.com/
   (set-lsp-priority! 'mspyls 1))
 
 (add-hook! python-mode
-  (conda-env-activate "py38")
+  (conda-env-activate "py39")
   (spacemacs/set-leader-keys-for-major-mode 'python-mode
     "'" 'spacemacs/python-start-or-switch-repl
     "sb" 'python-shell-send-buffer
