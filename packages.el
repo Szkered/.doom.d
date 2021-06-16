@@ -90,3 +90,4 @@
 (package! org-roam-server)
 (package! org-timeline)
 (package! org-gcal)
+(package! protobuf-mode)
