@@ -6,7 +6,6 @@
   :type 'string)
 
 
-
 (defun python-autoflake ()
   "Automatically clean up python codes
 $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --remove-duplicate-keys --expand-star-imports <filename>"
@@ -93,8 +92,24 @@ as the pyenv version then also return nil. This works around https://github.com/
 (after! lsp-python-ms
   (set-lsp-priority! 'mspyls 1))
 
+;; extra checkers after lsp
+(defvar-local my/flycheck-local-cache nil)
+
+(defun my/flycheck-checker-get (fn checker property)
+  (or (alist-get property (alist-get checker my/flycheck-local-cache))
+      (funcall fn checker property)))
+
+(advice-add 'flycheck-checker-get :around 'my/flycheck-checker-get)
+
+(add-hook 'lsp-managed-mode-hook
+          (lambda ()
+            (when (derived-mode-p 'python-mode)
+              (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint)))))))))
+
+
+;; extra KDB / auto activate conda env
 (add-hook! python-mode
-  (conda-env-activate "py39")
+  (conda-env-activate "py38")
   (spacemacs/set-leader-keys-for-major-mode 'python-mode
     "'" 'spacemacs/python-start-or-switch-repl
     "sb" 'python-shell-send-buffer
@@ -107,5 +122,3 @@ as the pyenv version then also return nil. This works around https://github.com/
 (setq ein:output-area-inlined-images t)
 (setq ein:use-auto-complete t)
 (setq ein:use-smartrep t)
-
-;; (setq lsp-pyright-extra-paths '("/home/zekun/.local/virtual-site-packages"))

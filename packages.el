@@ -91,3 +91,5 @@
 (package! org-timeline)
 (package! org-gcal)
 (package! protobuf-mode)
+(package! bazel)
+(package! py-yapf)

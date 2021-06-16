@@ -54,17 +54,17 @@ Horizon themes need to swap background
 ** Fonts
 Nice condensed fonts.
 #+BEGIN_SRC emacs-lisp
-;; (setq doom-font (font-spec :family "Iosevka Term SS04" :size 16 :weight 'medium))
-;; (setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 14))
+(setq doom-font (font-spec :family "Iosevka Term SS04" :size 16 :weight 'medium))
+(setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 14))
 
 ;; (setq doom-font (font-spec :family "Iosevka Term SS04" :size 22 :weight 'medium))
-;; (setq doom-variable-pitch-font (font-spec :family "Iosevka SS04" :size 18))
+;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 18))
 
 ;; (setq doom-font (font-spec :family "Iosevka Term" :size 22 :weight 'medium))
 ;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 18))
 
-(setq doom-font (font-spec :family "Iosevka Term" :size 32 :weight 'medium))
-(setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 28))
+;; (setq doom-font (font-spec :family "Iosevka Term" :size 32 :weight 'medium))
+;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 28))
 ;; (setq doom-variable-pitch-font (font-spec :family "Overpass" :size 28))
 
 ;; (setq doom-font (font-spec :family "Iosevka Term" :size 16 :weight 'medium))
@@ -315,6 +315,7 @@ this is awesome!
 * vterm
 Make auto-complete visible
 #+BEGIN_SRC emacs-lisp
+(setq shell-file-name "/bin/zsh")
 (custom-set-faces! '(vterm-color-black :background "#839496"))
 #+END_SRC
 
@@ -346,6 +347,7 @@ Use a custom English dictionary.
    :contents-sources
    (list
     (cfw:org-create-source "#09f7a0")  ; orgmode source
+    (cfw:ical-create-source "gcal" sail-gcal "aquamarine")
     (cfw:ical-create-source "gcal" my-gcal "IndianRed")))) ; google calendar ICS
 #+END_SRC
 
