@@ -23,7 +23,7 @@
      ("\\?\\?\\?+" . "#dc752f")))
  '(org-agenda-files '("/home/zekun/Dropbox/notes/vocab.org"))
  '(package-selected-packages
-   '(org-download org-gcal org-roam-server org-timeline org-pomodoro image-dired+ majapahit-theme modus-vivendi-theme kaolin-themes tao-theme logview auto-yasnippet powerthesaurus vterm shell-pop projectile org-time-budgets org-bullets ob-browser lsp-julia eglot-jl csv-mode csv ayu-theme))
+   '(py-yapf bazel org-download org-gcal org-roam-server org-timeline org-pomodoro image-dired+ majapahit-theme modus-vivendi-theme kaolin-themes tao-theme logview auto-yasnippet powerthesaurus vterm shell-pop projectile org-time-budgets org-bullets ob-browser lsp-julia eglot-jl csv-mode csv ayu-theme))
  '(pos-tip-background-color "#2E2A29")
  '(pos-tip-foreground-color "#d4d4d6")
  '(preview-auto-cache-preamble t))
