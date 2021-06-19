@@ -346,8 +346,8 @@ Use a custom English dictionary.
   (cfw:open-calendar-buffer
    :contents-sources
    (list
-    (cfw:org-create-source "#09f7a0")  ; orgmode source
-    (cfw:ical-create-source "gcal" sail-gcal "aquamarine")
+    (cfw:org-create-source "steel blue")  ; orgmode source
+    (cfw:ical-create-source "gcal" sail-gcal "sea green")
     (cfw:ical-create-source "gcal" my-gcal "IndianRed")))) ; google calendar ICS
 #+END_SRC
 
