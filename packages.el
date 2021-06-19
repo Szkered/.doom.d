@@ -83,8 +83,9 @@
   :recipe (:host github :repo "tecosaur/LaTeX-auto-activating-snippets"))
 ;; (package! auto-latex-snippets
 ;;   :recipe (:host github :repo "tecosaur/LaTeX-auto-activating-snippets"))
-(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
-  :pin "cc02f25337...")
+;; (package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
+;;   :pin "cc02f25337...")
+(package! vlf)
 (package! org-superstar)
 (unpin! doom-themes)                    ;; to get latest themes
 (package! org-roam-server)

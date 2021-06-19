@@ -192,6 +192,7 @@
         (".*fin.*" ,(list (all-the-icons-faicon "line-chart" :height 0.68)) nil nil :ascent center)
         (".*ml.*" ,(list (all-the-icons-octicon "hubot")) nil nil :ascent center)
         (".*cs.*" ,(list (all-the-icons-faicon "terminal")) nil nil :ascent center)
+        (".*cpp.*" ,(list (all-the-icons-faicon "terminal")) nil nil :ascent center)
         ;; (".*schedule.*" ,(list (all-the-icons-faicon "commenting")) nil nil :ascent center)
         (".*schedule.*" ,(list (all-the-icons-octicon "calendar")) nil nil :ascent center)
         (".*blockchain.*" ,(list (all-the-icons-faicon "lock")) nil nil :ascent center)

@@ -112,6 +112,7 @@ as the pyenv version then also return nil. This works around https://github.com/
   (conda-env-activate "py38")
   (spacemacs/set-leader-keys-for-major-mode 'python-mode
     "'" 'spacemacs/python-start-or-switch-repl
+    "l" 'lsp-execute-code-action
     "sb" 'python-shell-send-buffer
     "sr" 'python-shell-send-region
     "db" 'python-toggle-breakpoint
