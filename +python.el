@@ -19,6 +19,10 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
     (revert-buffer t t t)))
 
 
+;; (add-hook 'before-save-hook '+python/optimize-imports)
+
+;; (add-hook 'before-save-hook 'py-yapf-buffer)
+
 (defun python-toggle-breakpoint ()
   "Add an ipdb break point, highlight it."
   (interactive)
@@ -104,12 +108,12 @@ as the pyenv version then also return nil. This works around https://github.com/
 (add-hook 'lsp-managed-mode-hook
           (lambda ()
             (when (derived-mode-p 'python-mode)
-              (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint)))))))))
+              (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint python-mypy)))))))))
 
 
 ;; extra KDB / auto activate conda env
 (add-hook! python-mode
-  (conda-env-activate "py38")
+  (conda-env-activate "py39")
   (spacemacs/set-leader-keys-for-major-mode 'python-mode
     "'" 'spacemacs/python-start-or-switch-repl
     "l" 'lsp-execute-code-action
