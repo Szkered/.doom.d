@@ -21,7 +21,10 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
 
 ;; (add-hook 'before-save-hook '+python/optimize-imports)
 
-;; (add-hook 'before-save-hook 'py-yapf-buffer)
+(add-hook 'python-mode-hook
+          (function (lambda ()
+                      (add-hook 'before-save-hook
+                                'py-yapf-buffer))))
 
 (defun python-toggle-breakpoint ()
   "Add an ipdb break point, highlight it."

@@ -15,3 +15,7 @@
 
 (add-hook! c++-mode-hook (lsp))
 
+(add-hook 'c-mode-common-hook
+          (function (lambda ()
+                      (add-hook 'before-save-hook
+                                '+format/buffer))))
