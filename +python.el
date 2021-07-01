@@ -18,9 +18,6 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
       (shell-quote-argument (buffer-file-name))))
     (revert-buffer t t t)))
 
-
-;; (add-hook 'before-save-hook '+python/optimize-imports)
-
 (add-hook 'python-mode-hook
           (function (lambda ()
                       (add-hook 'before-save-hook
@@ -111,7 +108,7 @@ as the pyenv version then also return nil. This works around https://github.com/
 (add-hook 'lsp-managed-mode-hook
           (lambda ()
             (when (derived-mode-p 'python-mode)
-              (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint python-mypy)))))))))
+              (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint python-mypy python-flake8)))))))))
 
 
 ;; extra KDB / auto activate conda env
@@ -130,3 +127,4 @@ as the pyenv version then also return nil. This works around https://github.com/
 (setq ein:output-area-inlined-images t)
 (setq ein:use-auto-complete t)
 (setq ein:use-smartrep t)
+
