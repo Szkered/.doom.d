@@ -93,8 +93,8 @@ as the pyenv version then also return nil. This works around https://github.com/
 
 (set-popup-rule! "*Python*" :size 0.5 :side 'right :slot 1 :ttl nil :select nil :modeline nil :quit nil)
 
-(after! lsp-python-ms
-  (set-lsp-priority! 'mspyls 1))
+;; (after! lsp-python-ms
+;;   (set-lsp-priority! 'mspyls 1))
 
 ;; extra checkers after lsp
 (defvar-local my/flycheck-local-cache nil)
@@ -110,6 +110,7 @@ as the pyenv version then also return nil. This works around https://github.com/
             (when (derived-mode-p 'python-mode)
               (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint python-mypy python-flake8)))))))))
 
+;; (executable-find "pyright")
 
 ;; extra KDB / auto activate conda env
 (add-hook! python-mode
