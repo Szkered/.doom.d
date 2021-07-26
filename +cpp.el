@@ -27,3 +27,8 @@
      ;; In default, syntax checked by Clang and Cppcheck.
      (flycheck-add-next-checker 'c/c++-cppcheck
                                 '(warning . c/c++-googlelint))))
+
+(add-hook 'lsp-managed-mode-hook
+          (lambda ()
+            (when (derived-mode-p 'c++-mode)
+              (setq my/flycheck-local-cache '((lsp . ((next-checkers . (c/c++-googlelint)))))))))
