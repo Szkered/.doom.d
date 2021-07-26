@@ -94,3 +94,4 @@
 (package! protobuf-mode)
 (package! bazel)
 (package! py-yapf)
+(package! flycheck-google-cpplint)

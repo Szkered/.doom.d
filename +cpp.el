@@ -19,3 +19,11 @@
           (function (lambda ()
                       (add-hook 'before-save-hook
                                 '+format/buffer))))
+
+(eval-after-load 'flycheck
+  '(progn
+     (require 'flycheck-google-cpplint)
+     ;; Add Google C++ Style checker.
+     ;; In default, syntax checked by Clang and Cppcheck.
+     (flycheck-add-next-checker 'c/c++-cppcheck
+                                '(warning . c/c++-googlelint))))
