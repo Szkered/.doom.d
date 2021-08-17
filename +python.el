@@ -22,8 +22,8 @@ $ autoflake --in-place --remove-unused-variables --remove-all-unused-imports --r
           (lambda ()
             (add-hook 'before-save-hook
                       (lambda ()
-                        (when (eq major-mode 'python-mode) (py-yapf-buffer))
-                        ))))
+                        (when (eq major-mode 'python-mode) (py-yapf-buffer))))))
+
 
 (defun python-toggle-breakpoint ()
   "Add an ipdb break point, highlight it."
@@ -116,7 +116,7 @@ as the pyenv version then also return nil. This works around https://github.com/
 
 ;; extra KDB / auto activate conda env
 (add-hook! python-mode
-  (conda-env-activate "py39")
+  (conda-env-activate "py38")
   (spacemacs/set-leader-keys-for-major-mode 'python-mode
     "'" 'spacemacs/python-start-or-switch-repl
     "l" 'lsp-execute-code-action
@@ -131,3 +131,41 @@ as the pyenv version then also return nil. This works around https://github.com/
 (setq ein:use-auto-complete t)
 (setq ein:use-smartrep t)
 
+
+;; remote lsp
+(require 'lsp-mode)
+
+
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-tramp-connection "pyright")
+                  :major-modes '(python-mode)
+                  :remote? t
+                  :server-id 'pyright-remote))
+
+
+;; (push "/mnt/home/shizk/.linuxbrew/bin/pyright" tramp-remote-path)
+
+;; (advice-add 'lsp :before (lambda (&rest _args) (eval '(setf (lsp-session-server-id->folders (lsp-session)) (ht)))))
+
+;; (lsp-register-client
+;;  (make-lsp-client
+;;   :new-connection (lsp-tramp-connection "langserver.index.js")
+;;   :major-modes '(python-mode)
+;;   :multi-root lsp-pyright-multi-root
+;;   :remote? t
+;;   :server-id 'pyright-remote
+;;   :multi-root lsp-pyright-multi-root
+;;   :priority 3
+;;   :initialized-fn (lambda (workspace)
+;;                     (with-lsp-workspace workspace
+;;                       ;; we send empty settings initially, LSP server will ask for the
+;;                       ;; configuration of each workspace folder later separately
+;;                       (lsp--set-configuration
+;;                        (make-hash-table :test 'equal))))
+;;   :download-server-fn (lambda (_client callback error-callback _update?)
+;;                         (lsp-package-ensure 'pyright callback error-callback))
+;;   :notification-handlers (lsp-ht ("pyright/beginProgress" 'lsp-pyright--begin-progress-callback)
+;;                                  ("pyright/reportProgress" 'lsp-pyright--report-progress-callback)
+;;                                  ("pyright/endProgress" 'lsp-pyright--end-progress-callback))))
+
+(setq enable-remote-dir-locals t)
