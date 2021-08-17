@@ -248,7 +248,6 @@ loads large files in chunks
 Add spacemacs-esque key-bindings.
 #+BEGIN_SRC emacs-lisp
 (setq doom-localleader-key ",")
-(load! "~/.doom.d/modules/spacemacs/+spacemacs")
 #+END_SRC
 
 * Other modules
