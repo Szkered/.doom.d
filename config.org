@@ -292,6 +292,7 @@ Add spacemacs-esque key-bindings.
 (setq TeX-engine 'xetex)
 (when EMACS28+
   (add-hook 'latex-mode-hook #'TeX-latex-mode))
+(setq lsp-tex-server 'digestif)
 #+END_SRC
 
 *** auto latex snippets
