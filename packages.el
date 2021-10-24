@@ -81,17 +81,22 @@
 (package! aas)
 (package! laas
   :recipe (:host github :repo "tecosaur/LaTeX-auto-activating-snippets"))
-;; (package! auto-latex-snippets
+;; (package! auto-latex-snippeto
 ;;   :recipe (:host github :repo "tecosaur/LaTeX-auto-activating-snippets"))
 ;; (package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
 ;;   :pin "cc02f25337...")
 (package! vlf)
 (package! org-superstar)
 (unpin! doom-themes)                    ;; to get latest themes
-(package! org-roam-server)
+;; (package! org-roam :recipe (:host github :repo "org-roam/org-roam"))
+;; (package! org-roam-server)
 (package! org-timeline)
 (package! org-gcal)
 (package! protobuf-mode)
 (package! bazel)
 (package! py-yapf)
 (package! flycheck-google-cpplint)
+(package! gitconfig-mode
+  :recipe (:host github :repo "magit/git-modes" :files ("gitconfig-mode.el")))
+(package! gitignore-mode
+  :recipe (:host github :repo "magit/git-modes" :files ("gitignore-mode.el")))

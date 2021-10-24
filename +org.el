@@ -17,11 +17,11 @@
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "I" 'org-clock-in
     "O" 'org-clock-out
-    "R" 'org-refile
-    )
+    "R" 'org-refile)
+    
   (org-superstar-mode)
-  (setq org-agenda-files (directory-files-recursively "~/Dropbox/notes/" "\\.org$"))
-  )
+  (setq org-agenda-files (directory-files-recursively "~/Dropbox/notes/" "\\.org$")))
+  
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "HANGER(h)" "RUNWAY(r)" "AIRBORNE(a)" "|" "DONE(d)" "FAIL(f)" "CANCELLED(c)" "DELEGATED(g)")))
@@ -33,8 +33,8 @@
 
 ;; org file location
 (defun filter-org-file (file)
-  (equal (car (last (split-string file "\\."))) "org")
-  )
+  (equal (car (last (split-string file "\\."))) "org"))
+  
 
 (setq all-org-files
       (seq-filter 'filter-org-file (directory-files-recursively "~/Dropbox/notes/" ".*")))
@@ -198,8 +198,8 @@
         (".*blockchain.*" ,(list (all-the-icons-faicon "lock")) nil nil :ascent center)
         ("vocab" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
         (".*read.*" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
-        (".*cooking.*" ,(list (all-the-icons-faicon "fire")) nil nil :ascent center)
-        ))
+        (".*cooking.*" ,(list (all-the-icons-faicon "fire")) nil nil :ascent center)))
+        
 
 ;; TO DISPLAY ALL AVAILABLE ICONS
 ;; (all-the-icons-insert-icons-for 'octicon 10)
@@ -238,8 +238,8 @@
   (setq mode-line-format nil)
   (writeroom-mode)
   (text-scale-decrease 2)
-  (my-org-agenda-time-grid-spacing)
-  )
+  (my-org-agenda-time-grid-spacing))
+  
 
 ;; persistent org agenda buffer
 (setq org-agenda-sticky t)
@@ -256,8 +256,7 @@
   :config
   (setq deft-extensions '("txt" "tex" "org"))
   (setq deft-directory "~/Dropbox/notes")
-  (setq deft-recursive t)
-  )
+  (setq deft-recursive t))
 
 ;; Automatically add an appointment when clocking in a task
 (defvar bzg-org-clock-in-appt-delay 100
@@ -287,8 +286,8 @@
 (defun my-org-python ()
   (if (eq major-mode 'python-mode)
       (progn (anaconda-mode t)
-             (company-mode t)))
-  )
+             (company-mode t))))
+  
 (add-hook 'org-src-mode-hook 'my-org-python)
 
 ;; pomodoro
@@ -299,34 +298,34 @@
 ;; roam
 (setq org-roam-directory "~/Dropbox/notes/roam")
 
-(use-package org-roam-server
-  :ensure t
-  :config
-  (setq org-roam-server-host "127.0.0.1"
-        org-roam-server-port 8123
-        org-roam-server-authenticate nil
-        org-roam-server-export-inline-images t
-        org-roam-server-serve-files nil
-        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
-        org-roam-server-network-poll t
-        org-roam-server-network-arrows nil
-        org-roam-server-network-label-truncate t
-        org-roam-server-network-label-truncate-length 60
-        org-roam-server-network-label-wrap-length 20))
+;; (use-package org-roam-server
+;;   :ensure t
+;;   :config
+;;   (setq org-roam-server-host "127.0.0.1"
+;;         org-roam-server-port 8123
+;;         org-roam-server-authenticate nil
+;;         org-roam-server-export-inline-images t
+;;         org-roam-server-serve-files nil
+;;         org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+;;         org-roam-server-network-poll t
+;;         org-roam-server-network-arrows nil
+;;         org-roam-server-network-label-truncate t
+;;         org-roam-server-network-label-truncate-length 60
+;;         org-roam-server-network-label-wrap-length 20))
 
-(defun org-roam-server-open ()
-  "Ensure the server is active, then open the roam graph."
-  (interactive)
-  (smartparens-global-mode -1)
-  (org-roam-server-mode 1)
-  (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port))
-  (smartparens-global-mode 1))
+;; (defun org-roam-server-open ()
+;;   "Ensure the server is active, then open the roam graph."
+;;   (interactive)
+;;   (smartparens-global-mode -1)
+;;   (org-roam-server-mode 1)
+;;   (browse-url-xdg-open (format "http://localhost:%d" org-roam-server-port))
+;;   (smartparens-global-mode 1))
 
-;; automatically enable server-mode
-(after! org-roam
-  (smartparens-global-mode -1)
-  (org-roam-server-mode)
-  (smartparens-global-mode 1))
+;; ;; automatically enable server-mode
+;; (after! org-roam
+;;   (smartparens-global-mode -1)
+;;   (org-roam-server-mode)
+;;   (smartparens-global-mode 1))
 
 ;; google calendar integration
 (require 'org-gcal)
