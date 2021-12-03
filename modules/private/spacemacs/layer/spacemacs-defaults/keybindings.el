@@ -13,6 +13,9 @@
 ;; Prefixes
 ;; ---------------------------------------------------------------------------
 
+(general-auto-unbind-keys :off)
+(remove-hook 'doom-after-init-modules-hook #'general-auto-unbind-keys)
+
 ;; We define prefix commands only for the sake of which-key
 (setq spacemacs/key-binding-prefixes '(("SPC" "M-x")
                                        ;; ("TAB" "last buffer")

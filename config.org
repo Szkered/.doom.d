@@ -17,6 +17,8 @@
 ** Buffer default mode
 Somehow this slow down start up time
 #+BEGIN_SRC emacs-lisp
+(general-auto-unbind-keys :off)
+(remove-hook 'doom-after-init-modules-hook #'general-auto-unbind-keys)
 ;; (setq initial-major-mode 'emacs-lisp-mode)
 #+END_SRC
 
@@ -247,6 +249,7 @@ loads large files in chunks
 * Spacemacs emulation
 Add spacemacs-esque key-bindings.
 #+BEGIN_SRC emacs-lisp
+(load! "~/.doom.d/modules/private/spacemacs/config")
 (setq doom-localleader-key ",")
 #+END_SRC
 

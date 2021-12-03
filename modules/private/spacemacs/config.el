@@ -40,12 +40,12 @@ defer call using `spacemacs-post-user-config-hook'."
    dotspacemacs-startup-banner 'cat
    dotspacemacs-folding-method 'evil
    dotspacemacs-filepath (expand-file-name "config.el" doom-private-dir)
-   dotspacemacs-startup-lists '((recents  . 5)
+   dotspacemacs-startup-lists '((recents  . 5))))
                                 ;; (bookmarks . 8)
                                 ;; (projects . 7)
                                 ;; (agenda . 7)
                                 ;; (todos . 7)
-                                )))
+
 (dotspacemacs/init)
 (setq spacemacs-initialized t)
 
@@ -97,7 +97,7 @@ defer call using `spacemacs-post-user-config-hook'."
 
 (defmacro spacemacs/set-leader-keys (&rest rest)
   "Redefine the spacemcas/set-leader-keys macro"
-  (doom--map-process (cons :leader (cons :n rest) )))
+  (doom--map-process (cons :leader (cons :n rest))))
 
 (defmacro spacemacs/set-leader-keys-for-major-mode (mode &rest rest)
  "Redefine the `spacemacs/set-leader-keys-for-major-mode' macro.
@@ -123,30 +123,6 @@ Spacemacs use spacemacs-.*-mode-map, we here use original mode map."
 ;; load the modified spacemacs layers packages
 ;; initialise layers
 
-;; org layer
-(when (featurep! :lang org)
-  (load! (concat spacemacs-module-path "layer/org/config.el"))
-  (load! (concat spacemacs-module-path "layer/org/funcs.el"))
-  (load! (concat spacemacs-module-path "layer/org/packages.el"))
-  (org/init-org)
-  ;; (org/post-init-org)
-  (org/init-org-agenda)
-  (org/init-org-brain)
-  (org/init-org-expiry)
-  (org/init-org-download)
-  (org/init-org-jira)
-  (org/init-org-mime)
-  (org/init-org-pomodoro)
-  (org/init-org-present)
-  (org/init-org-cliplink)
-  ;; (org/init-org-projectile)
-  ;; (org/pre-init-org-re-reveal)
-  ;; (org/init-org-re-reveal )
-  (org/init-org-journal)
-  ;; (org/init-org-trello)
-  ;; (org/init-org-sticky-header)
-  (setq org-want-todo-bindings t)
-  (org/init-evil-org))
 
 
 ;; pdf layer
@@ -162,9 +138,9 @@ Spacemacs use spacemacs-.*-mode-map, we here use original mode map."
   (load! (concat spacemacs-module-path "layer/dash/packages.el"))
   ;; (load! (concat spacemacs-module-path "layer/dash/config.el"))
   ;; (load! (concat spacemacs-module-path "layer/dash/funcs.el"))
-  (dash/init-dash-at-point)
+  (dash/init-dash-at-point))
   ;;(dash/init-counsel-dash)
-  )
+  
 
 
 
@@ -274,10 +250,10 @@ Spacemacs use spacemacs-.*-mode-map, we here use original mode map."
   (javascript/init-js2-mode)
   ;; you can only choose either nodejs or skewer
   (setq javascript-repl 'nodejs)          ; choose nodejs
-  (javascript/init-nodejs-repl)
+  (javascript/init-nodejs-repl))
   ;;(setq javascript-repl 'skewer)        ; choose skewer
   ;;(javascript/init-skewer-mode)
-  )
+  
 
 
 ;; spacemacs editing layer
@@ -310,7 +286,7 @@ Spacemacs use spacemacs-.*-mode-map, we here use original mode map."
   ;; (spacemacs-evil/init-evil-matchit)
   (spacemacs-evil/init-evil-numbers)
   ;; (spacemacs-evil/init-evil-surround)
-  (spacemacs-evil/init-evil-terminal-cursor-changer)
+  (spacemacs-evil/init-evil-terminal-cursor-changer))
   ;; (spacemacs-evil/init-evil-textobj-line)
   ;; (spacemacs-evil/init-evil-tutor)
   ;; (spacemacs-evil/init-evil-unimpaired)
@@ -320,7 +296,7 @@ Spacemacs use spacemacs-.*-mode-map, we here use original mode map."
   ;; (spacemacs-evil/init-linum-relative)
   ;; (spacemacs-evil/init-vi-tilde-fringe)
 
-  )
+  
 
 ;; shell layer
 (load! (concat spacemacs-module-path "layer/shell/config.el"))
