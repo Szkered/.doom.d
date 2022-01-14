@@ -35,9 +35,19 @@ Somehow this slow down start up time
 #+END_SRC
 
 ** Tramp
+*** copy size limit
 #+BEGIN_SRC emacs-lisp
 (setq tramp-copy-size-limit nil)
 #+END_SRC
+*** faster
+#+begin_src emacs-lisp
+(setq remote-file-name-inhibit-cache nil)
+(setq vc-ignore-dir-regexp
+      (format "%s\\|%s"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
+(setq tramp-verbose 1)
+#+end_src
 
 * Visual Settings
 
