@@ -18,10 +18,10 @@
     "I" 'org-clock-in
     "O" 'org-clock-out
     "R" 'org-refile)
-    
+
   (org-superstar-mode)
   (setq org-agenda-files (directory-files-recursively "~/Dropbox/notes/" "\\.org$")))
-  
+
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "HANGER(h)" "RUNWAY(r)" "AIRBORNE(a)" "|" "DONE(d)" "FAIL(f)" "CANCELLED(c)" "DELEGATED(g)")))
@@ -34,7 +34,7 @@
 ;; org file location
 (defun filter-org-file (file)
   (equal (car (last (split-string file "\\."))) "org"))
-  
+
 
 (setq all-org-files
       (seq-filter 'filter-org-file (directory-files-recursively "~/Dropbox/notes/" ".*")))
@@ -75,7 +75,7 @@
 (setq org-agenda-log-mode-items '(closed state clock))
 (setq org-clock-idle-time 5)
 (setq org-agenda-block-separator (string-to-char " "))
-(setq my-org-agenda-prefix-format " %-2i %(concat \"[\" (car (last(split-string (org-agenda-get-category) \"-\"))) \"]\") %b %t%s")
+(setq my-org-agenda-prefix-format " %-2i %(concat \"[\" (car (last(split-string (or (org-agenda-get-category) \"\") \"-\"))) \"]\") %b %t%s")
 (setq org-agenda-custom-commands
       '(
         ("d" "Daily agenda and all TODOs"
@@ -175,10 +175,14 @@
       `((".*org.*" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
         (".*gtd.*" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
         ;; ("neuri" ,(list (all-the-icons-faicon "black-tie" :height 0.9)) nil nil :ascent center)
+        (".*sail.*" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
         (".*neuri.*" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
         (".*career.*" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
         ;; ("math" ,(list (all-the-icons-faicon "graduation-cap" :height 0.65)) nil nil :ascent center)
         (".*math.*" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
+        (".*reinforcement_learning.*" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
+        (".*cvx.*" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
+        (".*geometry.*" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         (".*quantum.*" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         (".*nus.*" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
         (".*MA.*" ,(list (all-the-icons-octicon "mortar-board")) nil nil :ascent center)
@@ -199,7 +203,7 @@
         ("vocab" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
         (".*read.*" ,(list (all-the-icons-faicon "book")) nil nil :ascent center)
         (".*cooking.*" ,(list (all-the-icons-faicon "fire")) nil nil :ascent center)))
-        
+
 
 ;; TO DISPLAY ALL AVAILABLE ICONS
 ;; (all-the-icons-insert-icons-for 'octicon 10)
@@ -239,7 +243,7 @@
   (writeroom-mode)
   (text-scale-decrease 2)
   (my-org-agenda-time-grid-spacing))
-  
+
 
 ;; persistent org agenda buffer
 (setq org-agenda-sticky t)
@@ -287,7 +291,7 @@
   (if (eq major-mode 'python-mode)
       (progn (anaconda-mode t)
              (company-mode t))))
-  
+
 (add-hook 'org-src-mode-hook 'my-org-python)
 
 ;; pomodoro
