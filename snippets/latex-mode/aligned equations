@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: aligned equations
-# key: aln
+# key: ali
 # --
 \begin{align*}
 $0

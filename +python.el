@@ -110,7 +110,8 @@ as the pyenv version then also return nil. This works around https://github.com/
 (add-hook 'lsp-managed-mode-hook
           (lambda ()
             (when (derived-mode-p 'python-mode)
-              (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint python-mypy python-flake8)))))))))
+              (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint python-mypy python-flake8))))))
+              (setq flycheck-pylintrc "~/.config/pylintrc"))))
 
 ;; (executable-find "pyright")
 
