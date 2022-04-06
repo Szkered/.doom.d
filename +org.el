@@ -75,7 +75,8 @@
 (setq org-agenda-log-mode-items '(closed state clock))
 (setq org-clock-idle-time 5)
 (setq org-agenda-block-separator (string-to-char " "))
-(setq my-org-agenda-prefix-format " %-2i %(concat \"[\" (car (last(split-string (or (org-agenda-get-category) \"\") \"-\"))) \"]\") %b %t%s")
+;; (setq my-org-agenda-prefix-format " %-2i %(concat \"[\" (car (last(split-string (or (org-agenda-get-category) \"\") \"-\"))) \"]\") %b %t%s")
+(setq my-org-agenda-prefix-format " %-2i %b %t%s")
 (setq org-agenda-custom-commands
       '(
         ("d" "Daily agenda and all TODOs"
