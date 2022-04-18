@@ -278,6 +278,7 @@ Add spacemacs-esque key-bindings.
 (add-to-list 'auto-mode-alist '("\\.gin\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)[Dd]ockerfile" . dockerfile-mode))
 (add-to-list 'auto-mode-alist '("\\.shader\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.BUILD\\'" . bazel-mode))
 #+END_SRC
 
 * Language specific settings
