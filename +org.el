@@ -337,3 +337,12 @@
 (setq org-gcal-client-id my-gcal-client-id
       org-gcal-client-secret my-gcal-client-secret
       org-gcal-fetch-file-alist '(("derek.zekun.shi%40gmail.com" .  "~/Dropbox/notes/roam/schedule.org")))
+
+;; auto export org beamer file
+(defun my-org-beamer-sync-hook ()
+  (when (eq major-mode 'org-mode)
+    (if (and (boundp 'org-latex-classes)
+             (string-equal (car (car org-latex-classes)) "beamer"))
+        (org-beamer-export-to-latex))))
+
+(add-hook 'before-save-hook #'my-org-beamer-sync-hook)
