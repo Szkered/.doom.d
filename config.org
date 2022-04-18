@@ -317,6 +317,7 @@ this is awesome!
   )
 (use-package! laas
   :hook (LaTeX-mode . laas-mode)
+  :hook (org-mode . laas-mode)
   :config ; do whatever here
   (aas-set-snippets 'laas-mode
                     ;; set condition!
