@@ -136,14 +136,14 @@ as the pyenv version then also return nil. This works around https://github.com/
 
 
 ;; remote lsp
-(require 'lsp-mode)
+;; (require 'lsp-mode)
 
 
-(lsp-register-client
- (make-lsp-client :new-connection (lsp-tramp-connection "pyright")
-                  :major-modes '(python-mode)
-                  :remote? t
-                  :server-id 'pyright-remote))
+;; (lsp-register-client
+;;  (make-lsp-client :new-connection (lsp-tramp-connection "pyright")
+;;                   :major-modes '(python-mode)
+;;                  :remote? t
+;;                  :server-id 'pyright-remote))
 
 
 ;; (push "/mnt/home/shizk/.linuxbrew/bin/pyright" tramp-remote-path)
