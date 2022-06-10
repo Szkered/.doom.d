@@ -342,7 +342,7 @@
 (defun my-org-beamer-sync-hook ()
   (when (eq major-mode 'org-mode)
     (if (and (boundp 'org-latex-classes)
-             (string-equal (car (car org-latex-classes)) "beamer"))
+             (equal (car org-file-tags) #("presentation" 0 12 (inherited t))))
         (org-beamer-export-to-latex))))
 
 (add-hook 'before-save-hook #'my-org-beamer-sync-hook)
