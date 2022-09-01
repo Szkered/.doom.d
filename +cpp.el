@@ -1,6 +1,5 @@
 ;;; ~/.doom.d/+cpp.el -*- lexical-binding: t; -*-
 
-
 ;; (after! lsp-clients (set-lsp-priority! 'clangd 1))
 
 (setq lsp-clients-clangd-args '("-j=3"
@@ -32,3 +31,6 @@
           (lambda ()
             (when (derived-mode-p 'c++-mode)
               (setq my/flycheck-local-cache '((lsp . ((next-checkers . (c/c++-googlelint)))))))))
+
+(setq dap-auto-configure-mode t)
+(require 'dap-cpptools)
