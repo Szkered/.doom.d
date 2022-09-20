@@ -257,11 +257,11 @@
                                "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")))
 
 ;; deft
-(use-package deft
-  :config
-  (setq deft-extensions '("txt" "tex" "org"))
-  (setq deft-directory "~/Dropbox/notes")
-  (setq deft-recursive t))
+;; (use-package deft
+;;   :config
+;;   (setq deft-extensions '("txt" "tex" "org"))
+;;   (setq deft-directory "~/Dropbox/notes")
+;;   (setq deft-recursive t))
 
 ;; Automatically add an appointment when clocking in a task
 (defvar bzg-org-clock-in-appt-delay 100

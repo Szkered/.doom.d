@@ -54,6 +54,7 @@ Somehow this slow down start up time
 ** Themes
 Horizon themes need to swap background
 #+BEGIN_SRC emacs-lisp
+;; (setq doom-theme 'doom-one)
 ;; (load! "~/.doom.d/themes/zaiste-emacs-theme/zaiste-theme.el")
 ;; (setq doom-theme 'doom-solarized-light)
 ;; (setq doom-theme 'doom-horizon)
@@ -73,50 +74,17 @@ Nice condensed fonts.
   (if window-system
       (progn
         (if (> (x-display-pixel-width) 2000)
-          (progn (setq doom-font (font-spec :family "Iosevka Term SS04" :size 32 :weight 'medium))
-                 (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 28)))
-          (progn (setq doom-font (font-spec :family "Iosevka Term SS04" :size 16 :weight 'medium))
-                 (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 14)))
-))))
+          (progn (setq doom-font "Iosevka Term SS04:pixelsize=32:foundry=UKWN:weight=regular:slant=normal:width=normal:spacing=90:scalable=true")
+                 (setq doom-variable-pitch-font "Iosevka:pixelsize=28:foundry=UKWN:weight=regular:slant=normal:width=normal:spacing=90:scalable=true"))
+          (progn (setq doom-font "Iosevka Term SS04:pixelsize=16:foundry=UKWN:weight=regular:slant=normal:width=normal:spacing=90:scalable=true")
+                 (setq doom-variable-pitch-font "Iosevka:pixelsize=14:foundry=UKWN:weight=regular:slant=normal:width=normal:spacing=90:scalable=true"))))))
+
 
 ;; Fontify current frame
 (fontify-frame nil)
 
 ;; Fontify any future frames
 (push 'fontify-frame after-make-frame-functions)
-
-;; (setq doom-font (font-spec :family "Iosevka Term SS04" :size 16 :weight 'medium))
-;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 14))
-
-;; (setq doom-font (font-spec :family "Iosevka Term SS04" :size 22 :weight 'medium))
-;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 18))
-
-;; (setq doom-font (font-spec :family "Iosevka Term" :size 22 :weight 'medium))
-;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 18))
-
-;; (setq doom-font (font-spec :family "Iosevka Term SS04" :size 32 :weight 'medium))
-;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 28))
-
-;; (setq doom-font (font-spec :family "Iosevka Term" :size 22 :weight 'medium))
-;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 18))
-
-;; (setq doom-variable-pitch-font (font-spec :family "Overpass" :size 28))
-
-;; (setq doom-font (font-spec :family "Iosevka Term" :size 16 :weight 'medium))
-;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 14))
-
-;; (setq doom-font (font-spec :family "Iosevka Term Slab" :size 22 :weight 'medium))
-;; (setq doom-variable-pitch-font (font-spec :family "Iosevka Slab" :size 18))
-
-;; (setq doom-font (font-spec :family "Operator Mono" :size 22 :weight 'light))
-;; (setq doom-variable-pitch-font (font-spec :family "Operator Mono" :size 18))
-
-;; (setq doom-font (font-spec :family "IBM Plex Mono" :size 18 :weight 'regular))
-;; (setq doom-variable-pitch-font (font-spec :family "IBM Plex Sans" :size 14))
-
-;; (setq doom-font (font-spec :family "IBM Plex Mono" :size 14 :weight 'regular))
-;; (setq doom-variable-pitch-font (font-spec :family "IBM Plex Sans" :size 10))
-
 #+END_SRC
 
 ** Line number

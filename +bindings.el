@@ -18,7 +18,7 @@
 
  (:leader
   ;; calendar
-  :n "c" 'my-open-calendar
+  ;; :n "c" 'my-open-calendar
 
   ;; workspace / window management
   :n "o" 'spacemacs/workspaces-transient-state/body
@@ -56,12 +56,12 @@
   (:map cfw:calendar-mode-map
    ;; "<return>" 'cfw:show-details-command
    :n "RET" 'cfw:show-details-command
-   :n "SPC" 'nil
-   )
+   :n "SPC" 'nil)
+   
   (:map cfw:details-mode-map
-   :n "q" 'cfw:details-kill-buffer-command
-   )
-  )
+   :n "q" 'cfw:details-kill-buffer-command))
+   
+  
 
 
  (:after dap-mode
