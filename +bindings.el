@@ -9,11 +9,11 @@
 
  ;; searching
  "C-s" 'swiper
- "C-c s" 'counsel-rg
+ "C-c s" 'consult-ripgrep
 
  (:when (featurep! :editor multiple-cursors)
-  :nv "C-n" #'evil-mc-make-and-goto-next-match
-  :nv "C-p" #'evil-mc-make-and-goto-prev-match)
+   :nv "C-n" #'evil-mc-make-and-goto-next-match
+   :nv "C-p" #'evil-mc-make-and-goto-prev-match)
 
 
  (:leader
@@ -46,51 +46,51 @@
 
 
  (:after multi-vterm
-  (:map multi-vterm-mode-map
-   :leader
-   :n "mc" 'multi-vterm
-   :n "mp" 'multi-vterm-prev
-   :n "mn" 'multi-vterm-next))
+         (:map multi-vterm-mode-map
+          :leader
+          :n "mc" 'multi-vterm
+          :n "mp" 'multi-vterm-prev
+          :n "mn" 'multi-vterm-next))
 
  (:after calfw
-  (:map cfw:calendar-mode-map
-   ;; "<return>" 'cfw:show-details-command
-   :n "RET" 'cfw:show-details-command
-   :n "SPC" 'nil)
-   
-  (:map cfw:details-mode-map
-   :n "q" 'cfw:details-kill-buffer-command))
-   
-  
+         (:map cfw:calendar-mode-map
+          ;; "<return>" 'cfw:show-details-command
+          :n "RET" 'cfw:show-details-command
+          :n "SPC" 'nil)
+
+         (:map cfw:details-mode-map
+          :n "q" 'cfw:details-kill-buffer-command))
+
+
 
 
  (:after dap-mode
-  (:map dap-mode-map
-   :leader
-   :n "dd" 'dap-debug
-   :n "de" 'dap-debug-edit-template
-   :n "d." 'dap-hydra))
+         (:map dap-mode-map
+          :leader
+          :n "dd" 'dap-debug
+          :n "de" 'dap-debug-edit-template
+          :n "d." 'dap-hydra))
 
 
 
  (:after julia-mode
-  (:map julia-mode-map
-   :n "K" 'eldoc-doc-buffer
-   :localleader
-   :n "'" '+julia/open-repl)))
+         (:map julia-mode-map
+          :n "K" 'eldoc-doc-buffer
+          :localleader
+          :n "'" '+julia/open-repl)))
 
 
 
- ;; (:when (:featurep! :lang python)
- ;;  (:map python-mod-map
- ;;   :localleader
- ;;   :n "'"  #'+python/open-ipython-repl
- ;;   :n "sb" #'python-shell-send-buffer
- ;;   :n "sr" #'python-shell-send-region
- ;;   :n "db" #'python-toggle-breakpoint
- ;;   :n "ri" #'py-isort-buffer
- ;;   :n "ru" #'python-autoflake)
- ;;  )
+;; (:when (:featurep! :lang python)
+;;  (:map python-mod-map
+;;   :localleader
+;;   :n "'"  #'+python/open-ipython-repl
+;;   :n "sb" #'python-shell-send-buffer
+;;   :n "sr" #'python-shell-send-region
+;;   :n "db" #'python-toggle-breakpoint
+;;   :n "ri" #'py-isort-buffer
+;;   :n "ru" #'python-autoflake)
+;;  )
 
 
 
