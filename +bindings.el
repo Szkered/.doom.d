@@ -20,9 +20,12 @@
   ;; calendar
   ;; :n "c" 'my-open-calendar
 
+  :n "RET" 'bookmark-jump
+
   ;; workspace / window management
   :n "o" 'spacemacs/workspaces-transient-state/body
-  :n "0" 'neotree
+  ;; :n "0" 'neotree
+  :n "0" 'treemacs-select-window
   :n "1" 'winum-select-window-1
   :n "2" 'winum-select-window-2
   :n "3" 'winum-select-window-3
