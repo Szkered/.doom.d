@@ -14,6 +14,11 @@
 
 * Better Defaults
 
+** hl-line-mode hack
+#+begin_src emacs-lisp
+(if (not (active-minibuffer-window)) (progn (setq hl-line-mode-set-explicity t) (setq hl-line-mode t) (hl-line-mode)))
+#+end_src
+
 ** Buffer default mode
 Somehow this slow down start up time
 #+BEGIN_SRC emacs-lisp

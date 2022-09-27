@@ -40,6 +40,7 @@
 
   :n "gs" 'magit-status
   :n "gff" 'magit-find-file
+  :n "na" 'org-agenda
 
   :n "Ts" 'load-theme
 
