@@ -178,6 +178,7 @@
        ;;plantuml           ; diagrams for confusing people more
        ;;purescript         ; javascript, but functional
        (python
+        +cython
         +conda
         +lsp
         +pyright

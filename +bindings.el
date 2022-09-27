@@ -37,7 +37,9 @@
   :n "9" 'winum-select-window-9
   :n "'" 'spacemacs/shell-pop-multi-vterm
   :n "es" 'flycheck-list-errors
+
   :n "gs" 'magit-status
+  :n "gff" 'magit-find-file
 
   :n "Ts" 'load-theme
 
