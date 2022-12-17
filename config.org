@@ -78,7 +78,7 @@ Nice condensed fonts.
   (interactive)
   (if window-system
       (progn
-        (if (> (x-display-pixel-width) 2000)
+        (if (and (> (x-display-pixel-width) 2000) (not (eq system-type 'darwin)))
           (progn (setq doom-font "Iosevka Term SS04:pixelsize=32:foundry=UKWN:weight=regular:slant=normal:width=normal:spacing=90:scalable=true")
                  (setq doom-variable-pitch-font "Iosevka:pixelsize=28:foundry=UKWN:weight=regular:slant=normal:width=normal:spacing=90:scalable=true"))
           (progn (setq doom-font "Iosevka Term SS04:pixelsize=16:foundry=UKWN:weight=regular:slant=normal:width=normal:spacing=90:scalable=true")
