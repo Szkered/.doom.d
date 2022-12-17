@@ -320,8 +320,16 @@ this is awesome!
                     "Olog" "O(\\log n)"
                     "Olon" "O(n \\log n)"
                     "Span" (lambda () (interactive)
-                             (yas-expand-snippet "\\Span($1)$0"))))
+                             (yas-expand-snippet "\\Span\{$1$0"))
+                    "va" (lambda () (interactive)
+                             (yas-expand-snippet "\\va\{$1$0"))
+                    "vb" (lambda () (interactive)
+                             (yas-expand-snippet "\\vb\{$1$0"))
+))
 #+END_SRC
+
+#+RESULTS:
+| er/add-org-mode-expansions | (closure ((hook . org-mode-hook) (tail) t) (&rest _) (general-define-key :states '(normal visual motion emacs insert) :major-modes t :prefix doom-localleader-key :non-normal-prefix doom-localleader-alt-key :keymaps '(org-mode-map) I 'org-clock-in O 'org-clock-out R 'org-refile) (org-superstar-mode) (setq org-agenda-files (directory-files-recursively ~/Dropbox/notes/ \.org$))) | laas-mode | ass-activate-for-major-mode | #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] | (closure ((hook . org-mode-hook) (tail) t) (&rest _) (general-define-key :states '(normal visual motion emacs insert) :major-modes t :prefix doom-localleader-key :non-normal-prefix doom-localleader-alt-key :keymaps '(org-mode-map) I 'org-clock-in O 'org-clock-out R 'org-refile) (org-superstar-mode) (setq org-agenda-files (directory-files-recursively ~/Dropbox/notes/ \.org$))) | (closure ((hook . org-mode-hook) (tail) t) (&rest _) (add-hook 'before-save-hook 'org-encrypt-entries nil t)) | +lookup--init-org-mode-handlers-h | (closure ((hook . org-mode-hook) (tail) t) (&rest _) (add-hook 'before-save-hook 'org-encrypt-entries nil t)) | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-fold-show-all append local] 5] | embrace-org-mode-hook | writegood-mode | org-cdlatex-mode | doom-disable-show-paren-mode-h | doom-disable-show-trailing-whitespace-h | +org-enable-auto-reformat-tables-h | +org-enable-auto-update-cookies-h | +org-make-last-point-visible-h | evil-org-mode | toc-org-enable | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | org-eldoc-load | +literate-enable-recompile-h |
 
 *** pdf should auto revert
 #+BEGIN_SRC emacs-lisp
