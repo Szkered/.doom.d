@@ -69,8 +69,9 @@
 ;; (package! org-download)
 (package! systemd)
 (package! info-colors)
-(use-package! evil-tex
-  :hook (LaTeX-mode . evil-tex-mode))
+(package! evil-tex)
+;; (package! evil-tex
+;;   :hook (LaTeX-mode . evil-tex-mode))
 (package! powerthesaurus)
 (package! smartrep)
 (package! ob-browser)
