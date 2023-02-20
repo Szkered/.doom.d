@@ -175,6 +175,7 @@
 (setq org-agenda-category-icon-alist
       `((".*org.*" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
         (".*gtd.*" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
+        (".*research.*" ,(list (all-the-icons-faicon "pencil")) nil nil :ascent center)
         ;; ("neuri" ,(list (all-the-icons-faicon "black-tie" :height 0.9)) nil nil :ascent center)
         (".*sail.*" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
         (".*game_ai.*" ,(list (all-the-icons-octicon "briefcase")) nil nil :ascent center)
