@@ -117,17 +117,28 @@ as the pyenv version then also return nil. This works around https://github.com/
 
 ;; (executable-find "pyright")
 
+(defmacro safe-wrap (fn &rest clean-up)
+  `(unwind-protect
+       (let (retval)
+         (condition-case ex
+             (setq retval (progn ,fn))
+           ('error
+            (message (format "Caught exception: [%s]" ex))
+            (setq retval (cons 'exception (list ex)))))
+         retval)
+     ,@clean-up))
+
 ;; extra KDB / auto activate conda env
 (add-hook! python-mode
-  (conda-env-activate "py38")
-  (spacemacs/set-leader-keys-for-major-mode 'python-mode
-    "'" 'spacemacs/python-start-or-switch-repl
-    "l" 'lsp-execute-code-action
-    "sb" 'python-shell-send-buffer
-    "sr" 'python-shell-send-region
-    "db" 'python-toggle-breakpoint
-    "ri" 'py-isort-buffer
-    "ru" 'python-autoflake))
+ ;;(conda-env-activate "py38")
+ (spacemacs/set-leader-keys-for-major-mode 'python-mode
+   "'" 'spacemacs/python-start-or-switch-repl
+   "l" 'lsp-execute-code-action
+   "sb" 'python-shell-send-buffer
+   "sr" 'python-shell-send-region
+   "db" 'python-toggle-breakpoint
+   "ri" 'py-isort-buffer
+   "ru" 'python-autoflake))
 
 
 (setq ein:output-area-inlined-images t)
@@ -171,4 +182,32 @@ as the pyenv version then also return nil. This works around https://github.com/
 ;;                                  ("pyright/reportProgress" 'lsp-pyright--report-progress-callback)
 ;;                                  ("pyright/endProgress" 'lsp-pyright--end-progress-callback))))
 
-(setq enable-remote-dir-locals t)
+;; (setq enable-remote-dir-locals t)
+
+(defun my-pdf-view-double-scroll-up-or-next-page (&optional arg)
+  "Scroll page up ARG lines if possible, else go to the next page.
+
+When `pdf-view-continuous' is non-nil, scrolling upward at the
+bottom edge of the page moves to the next page.  Otherwise, go to
+next page only on typing SPC (ARG is nil)."
+  (interactive "P")
+  (if (or pdf-view-continuous (null arg))
+      (let ((hscroll (window-hscroll))
+            (cur-page (pdf-view-current-page)))
+        (when (or (= (window-vscroll) (image-scroll-up arg))
+                  ;; Workaround rounding/off-by-one issues.
+                  (memq pdf-view-display-size
+                        '(fit-height fit-page)))
+          (pdf-view-next-page 2)
+          (when (/= cur-page (pdf-view-current-page))
+            (image-bob)
+            (image-bol 1))
+          (set-window-hscroll (selected-window) hscroll)))
+    (image-scroll-up arg)))
+
+(defun my-pdf-view-double-scroll-horizontal-view ()
+  (interactive)
+  (my-pdf-view-double-scroll-up-or-next-page)
+  (other-window 1)
+  (my-pdf-view-double-scroll-up-or-next-page)
+  (other-window 1))
