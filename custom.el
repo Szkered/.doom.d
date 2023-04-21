@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(laas dired-narrow))
+ '(package-selected-packages '(latex-math-preview laas dired-narrow))
  '(safe-local-variable-values '((LEXICAL-binding . t)))
  '(send-mail-function 'mailclient-send-it))
 (custom-set-faces

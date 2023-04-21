@@ -351,3 +351,9 @@
         (org-beamer-export-to-latex))))
 
 (add-hook 'before-save-hook #'my-org-beamer-sync-hook)
+
+;; (setq org-latex-create-formula-image-program 'imagemagick) ;; Recommended to use imagemagick
+
+;; (load "auctex.el" nil t t)
+;; (load "preview-latex.el" nil t t)
+;; (setq LaTeX-command "latex -shell-escape")

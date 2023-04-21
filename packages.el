@@ -101,3 +101,5 @@
   :recipe (:host github :repo "magit/git-modes" :files ("gitconfig-mode.el")))
 (package! dired-narrow)
 (package! docker-tramp)
+(package! copilot
+  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
