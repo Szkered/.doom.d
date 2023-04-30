@@ -337,10 +337,10 @@
 ;;   (smartparens-global-mode 1))
 
 ;; google calendar integration
-(require 'org-gcal)
-(setq org-gcal-client-id my-gcal-client-id
-      org-gcal-client-secret my-gcal-client-secret
-      org-gcal-fetch-file-alist '(("derek.zekun.shi%40gmail.com" .  "~/Dropbox/notes/roam/schedule.org")))
+;; (require 'org-gcal)
+;; (setq org-gcal-client-id my-gcal-client-id
+;;       org-gcal-client-secret my-gcal-client-secret
+;;       org-gcal-fetch-file-alist '(("derek.zekun.shi%40gmail.com" .  "~/Dropbox/notes/roam/schedule.org")))
 ;; (org-gcal-reload-client-id-secret)
 
 ;; auto export org beamer file
