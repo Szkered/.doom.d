@@ -341,7 +341,7 @@
 (setq org-gcal-client-id my-gcal-client-id
       org-gcal-client-secret my-gcal-client-secret
       org-gcal-fetch-file-alist '(("derek.zekun.shi%40gmail.com" .  "~/Dropbox/notes/roam/schedule.org")))
-(org-gcal-reload-client-id-secret)
+;; (org-gcal-reload-client-id-secret)
 
 ;; auto export org beamer file
 (defun my-org-beamer-sync-hook ()
